@@ -27,3 +27,27 @@ fp-info-cache
 # Exported BOM files
 *.xml
 *.csv
+
+*.fdb_latexmk
+*.fls
+*.lof
+*.log
+*.lot
+*.blg
+*.aux
+*.DS_Store
+*.gz
+*.bcf
+*.toc
+*.dvi
+*.run.xml
+*.toc
+*.synctex(busy)
+*.bbl
+*.out
+*.vscode
+*.bkp
+*.raw
+*.fft
+stab.txt
+Documentation/**/*.pdf
