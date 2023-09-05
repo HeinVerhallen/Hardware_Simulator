@@ -7,14 +7,11 @@
 
 The goal of this project is to design a programmable hardware system that presents a BMS with a "battery" and a "load" (see figure \ref{fig:system_context_diagram}). The hardware system emulates the battery and load. By using only software changes the hardware system should be able to emulate a battery with a different chemistry, capacity and cell topology. Likewise the hardware system should be able to emulate different loads from electronics through to motors under varying load.
 
-The main deliverables are:
-\begin{itemize}
-    \item Tested prototype of a battery emulator circuit
-    \item Research report on existing hardware emulators, and the requirements for future emulators
-\end{itemize}
+At the end of the project it is expected that a battery and load emulator prototype is delivered. As well as a research report on existing battery and load emulators and the requirements for future battery and load emulators.
+% As well as a research report on existing hardware emulators and the requirements for future emulators.
 
 \section{Research questions}
-To be able to accomplish these deliverables it is necessary to research the following topics:
+To be able to accomplish these deliverables the following research questions have been derived:
 \begin{itemize}
     \item What different battery chemistries are there?
     \item How do different battery chemistries behave?
@@ -25,7 +22,8 @@ To be able to accomplish these deliverables it is necessary to research the foll
     \item How do different loads behave?
     \item How to control the voltage, current and phase to emulate a battery cell via software changes?
     \item How to control the voltage, current and phase to emulate a load via software changes?
-    \item What hardware emulators already exist?
+    \item What battery emulators already exist?
+    \item What load emulators already exist?
     \item What are the requirements for future emulators?
 \end{itemize}
 
@@ -37,8 +35,10 @@ For this project the following requirements have been specified, following the M
     \textbf{ID} & \textbf{Requirement} & \textbf{Priority} & \textbf{Status}\\ \hline 
     \textbf{U1} & The hardware is able to emulate a battery with a specific lithium-ion chemistry and capacity & Must & Proposed\\ \hline
     \textbf{U2} & The hardware is flexible enough to require only software changes to emulate a battery with a different chemistry, a different capacity, and a different cell topology & Must & Proposed\\ \hline
-    \textbf{U3} & The hardware is able to emulate different loads: from electronics through to motors under varying load & Must & Proposed\\ \hline
+    % \textbf{U3} & The hardware is able to emulate different loads: from electronics through to motors under varying load & Must & Proposed\\ \hline
+    \textbf{U3} & The hardware system is able to adjust the load impedance characteristic curve & Must & Proposed\\ \hline
     \textbf{U4} & The hardware system is tested & Must & Proposed\\ \hline
     \textbf{U5} & The hardware is able to control the voltage, current and phase independently & Must & Proposed\\ \hline
     \textbf{U6} & The hardware contains a BMS & Won't & Proposed\\ \hline
 \end{longtable}
+
