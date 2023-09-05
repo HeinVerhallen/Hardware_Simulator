@@ -1,11 +1,11 @@
 \begin{figure}[ht]
     \centering
-    \includegraphics[scale=0.7]{Global_project_description.png}
-    \caption{Hardware system that presents the BMS with a "battery" and a "load"}
-    \label{fig:global_project_description}
+    \includegraphics[scale=0.7]{System_context_diagram.png}
+    \caption{System context diagram}
+    \label{fig:system_context_diagram}
 \end{figure}
 
-The goal of this project is to design a programmable hardware system that presents a BMS with a "battery" and a "load". The hardware system emulates the battery and load. By using only software changes the hardware system should be able to emulate a battery with a different chemistry, capacity and cell topology. Likewise the hardware system should be able to emulate different loads from electronics through to motors under varying load.
+The goal of this project is to design a programmable hardware system that presents a BMS with a "battery" and a "load" (see figure \ref{fig:system_context_diagram}). The hardware system emulates the battery and load. By using only software changes the hardware system should be able to emulate a battery with a different chemistry, capacity and cell topology. Likewise the hardware system should be able to emulate different loads from electronics through to motors under varying load.
 
 % The goal of this project is to design a programmable hardware system that presents the BMS with a “battery” and a “load.” The hardware system should, in the first iteration, be able to emulate a battery with a specific lithium-ion chemistry and capacity. However, the hardware should be flexible enough to require only software changes to emulate a battery with a different chemistry, a different capacity, and a different cell topology.
 
@@ -17,6 +17,7 @@ The main deliverables are:
     \item Research report on existing hardware emulators, and the requirements for future emulators
 \end{itemize}
 
+\section{Research questions}
 To be able to accomplish these deliverables it is necessary to research the following topics:
 \begin{itemize}
     \item What different battery chemistries are there?
@@ -29,17 +30,16 @@ To be able to accomplish these deliverables it is necessary to research the foll
     \item How to control the voltage, current and phase to emulate a battery cell via software changes?
     \item How to control the voltage, current and phase to emulate a load via software changes?
     \item What hardware emulators already exist?
-    \item What are the future emulator requirements?
+    \item What are the requirements for future emulators?
 \end{itemize}
 
-\newpage
 \section{Requirements}
 \begin{longtable}{|c|p{10cm}|c|c|}
     \hline
     \textbf{ID} & \textbf{Requirement} & \textbf{Priority} & \textbf{Status}\\ \hline 
     \textbf{U1} & The hardware is able to emulate a battery with a specific lithium-ion chemistry and capacity & Must & Proposed\\ \hline
     \textbf{U2} & The hardware is flexible enough to require only software changes to emulate a battery with a different chemistry, a different capacity, and a different cell topology & Must & Proposed\\ \hline
-    \textbf{U3} & It is possible to emulate different loads: from electronics through to motors under varying load & Must & Proposed\\ \hline
+    \textbf{U3} & The hardware is able to emulate different loads: from electronics through to motors under varying load & Must & Proposed\\ \hline
     \textbf{U4} & The battery emulator circuit is tested & Must & Proposed\\ \hline
     \textbf{U5} & The hardware is able to control the voltage, current and phase independently & Must & Proposed\\ \hline
     \textbf{U6} & The hardware contains a BMS & Won't & Proposed\\ \hline
