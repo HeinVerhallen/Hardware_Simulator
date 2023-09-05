@@ -14,6 +14,7 @@
 \usepackage{tabularx}
 \usepackage{longtable}
 \usepackage{blindtext}
+\usepackage{pdflscape}
 \hypersetup{
     colorlinks=true, %set true if you want colored links
     linktoc=all,     %set to all if you want both sections and subsections linked
@@ -104,8 +105,10 @@ DAC                   & Digital-to-Analog Converter \\ \hline
 \chapter{Project organization}
 	\input{Projectorganization}
 
-\chapter{Planning}
-	\input{Planning}
+\begin{landscape}
+	\chapter{Planning}
+		\input{Planning}
+\end{landscape}
 
 \chapter{Cost-benefit overview}
 	\input{Costbenefitoverview}
