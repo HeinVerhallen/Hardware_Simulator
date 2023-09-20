@@ -11,47 +11,17 @@ Because the project team members are not yet experts in the field of designing b
 
 In the second design iteration software will be added to the battery emulator circuit to control the voltages of each emulated cell via software. Also the temperature will be emulated in the battery pack emulator. The third design iteration consists of expanding the amount of emulated cells in the emulated battery pack to 14 cells. In the fourth design iteration a load emulator will be designed to test the BMS under different load conditions. This load emulator is capable of emulating electronics and motors. 
 
-% The goal of this project is to design a programmable hardware system that presents a BMS with a "battery" and a "load" (see figure \ref{fig:system_context_diagram}). The hardware system emulates the battery and load. By using only software changes the hardware system should be able to emulate a battery with a different chemistry, capacity and cell topology. Likewise the hardware system should be able to emulate different loads from electronics through to motors under varying load.
-
 At the end of the project it is expected that a battery pack emulator and optionally a load emulator is delivered. And if the planning allows it, a research report on existing battery and load emulators and the requirements for future battery and load emulators is delivered.
 
 \section{Research questions}
 In order to acquire functional requirements the following research questions have been derived:
-% To be able to accomplish these deliverables the following research questions have been derived:
+
 \begin{itemize}
     \item What is the safe operating area for Li-ion cells?
-    % \item What different battery chemistries are there?
-    % \item How do different battery chemistries behave?
-    % \item What different battery cell topologies are there?
-    % \item How do different battery cell topologies behave?
-    % \item How do different battery capacities behave?
-    % \item What kind of loads are there?
-    % \item How do different loads behave?
-    % \item How to control the voltage, current and phase to emulate a battery cell via software changes?
-    % \item How to control the voltage, current and phase to emulate a load via software changes?
     \item How do existing battery emulators work?
     \item How do existing load emulators work?
-    % \item What are the requirements for future emulators?
 \end{itemize}
 
 \section{Requirements}
-For this project the following non-functional requirements with their functional requirements have been specified (see Appendix).
-
-  
-  
-% \end{longtable}
-
-% \begin{longtable}{|c|p{10cm}|c|c|}
-%     \hline
-%     \textbf{ID} & \textbf{Requirement} & \textbf{Priority} & \textbf{Status}\\ \hline 
-%     \textbf{U1} & The hardware is able to emulate a battery with a specific lithium-ion chemistry and capacity & Must & Proposed\\ \hline
-%     \textbf{U2} & The hardware is flexible enough to require only software changes to emulate a battery with a different chemistry, a different capacity, and a different cell topology & Must & Proposed\\ \hline
-%     % \textbf{U3} & The hardware is able to emulate different loads: from electronics through to motors under varying load & Must & Proposed\\ \hline
-%     \textbf{U3} & The hardware system is able to adjust the load impedance characteristic curve & Must & Proposed\\ \hline
-%     % \textbf{U4} & The hardware system is tested & Must & Proposed\\ \hline
-%     \textbf{U4} & The hardware is able to control the voltage, current and phase independently & Must & Proposed\\ \hline
-%     \textbf{U5} & The hardware contains a BMS & Won't & Proposed\\ \hline
-% \end{longtable}
-
-
+For this project the following non-functional requirements with their functional requirements have been specified (see figure \ref{fig:functional_and_non-functional_requirements} in Appendix).
 
