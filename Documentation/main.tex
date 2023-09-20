@@ -16,6 +16,7 @@
 \usepackage{blindtext}
 \usepackage{pdflscape}
 \usepackage{multirow}
+\usepackage{booktabs}
 \hypersetup{
     colorlinks=true, %set true if you want colored links
     linktoc=all,     %set to all if you want both sections and subsections linked
@@ -105,16 +106,19 @@ Li-ion	              & Lithium-ion    \\ \hline
 \chapter{Project organization}
 	\input{Projectorganization}
 
-\begin{landscape}
+% \begin{landscape}
 	\chapter{Planning}
 		\input{Planning}
-\end{landscape}
+% \end{landscape}
 
 \chapter{Cost-benefit overview}
 	\input{Costbenefitoverview}
 
 \chapter{Risk Analysis}
 	\input{Riskanalysis}
+
+\chapter{Appendix A: requirements}
+	\input{Appendix_A_requirements.tex}
 
 % Bibliography with heading so it pops up in the table of contents (i don't know why but this is how it works)
 % \printbibliography[
