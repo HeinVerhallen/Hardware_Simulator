@@ -1,0 +1,4 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "Battery_Emulator")(type "KiCad")(uri "${KIPRJMOD}/Footprints")(options "")(descr ""))
+)
