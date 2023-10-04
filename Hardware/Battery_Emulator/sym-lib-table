@@ -1,5 +1,5 @@
 (sym_lib_table
   (version 7)
   (lib (name "Inital design-rescue")(type "KiCad")(uri "${KIPRJMOD}/Battery_Emulator-rescue.kicad_sym")(options "")(descr ""))
-  (lib (name "Battery_emulator")(type "Legacy")(uri "${KIPRJMOD}/Battery_Emulator.lib")(options "")(descr ""))
+  (lib (name "Battery_emulator")(type "KiCad")(uri "${KIPRJMOD}/Battery_Emulator.kicad_sym")(options "")(descr ""))
 )
