@@ -1,0 +1,5 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "PR7 Custom")(type "Legacy")(uri "${KIPRJMOD}/PR7 Custom.lib")(options "")(descr ""))
+  (lib (name "Inital design-rescue")(type "KiCad")(uri "${KIPRJMOD}/Inital design-rescue.kicad_sym")(options "")(descr ""))
+)

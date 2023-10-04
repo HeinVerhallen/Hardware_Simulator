@@ -1,0 +1,601 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A3 16535 11693
+encoding utf-8
+Sheet 1 1
+Title "Battery Hardware Emulator"
+Date ""
+Rev "R01"
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L Regulator_Linear:L7805 U?
+U 1 1 65141CEA
+P 5150 2450
+F 0 "U?" H 5150 2692 50  0000 C CNN
+F 1 "74AHC2G125DP,125" H 5150 2601 50  0000 C CNN
+F 2 "Package_SO:TSSOP-8_3x3mm_P0.65mm" H 5175 2300 50  0001 L CIN
+F 3 "https://www.digikey.nl/en/products/detail/nexperia-usa-inc/74AHC2G125DP-125/1229528" H 5150 2400 50  0001 C CNN
+	1    5150 2450
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 65142E9E
+P 4150 1950
+F 0 "R?" H 4220 1996 50  0000 L CNN
+F 1 "R" H 4220 1905 50  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric" V 4080 1950 50  0001 C CNN
+F 3 "~" H 4150 1950 50  0001 C CNN
+	1    4150 1950
+	1    0    0    -1  
+$EndComp
+$Comp
+L Regulator_Linear:LM317L_TO92 U?
+U 1 1 651444B6
+P 8550 1600
+F 0 "U?" H 8550 1842 50  0000 C CNN
+F 1 "74AHC2G125DP,125" H 8550 1751 50  0000 C CNN
+F 2 "Package_SO:TSSOP-8_3x3mm_P0.65mm" H 8550 1825 50  0001 C CIN
+F 3 "https://www.digikey.nl/en/products/detail/nexperia-usa-inc/74AHC2G125DP-125/1229528" H 8550 1600 50  0001 C CNN
+	1    8550 1600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4150 1800 4150 1600
+Wire Wire Line
+	4150 1600 4550 1600
+Wire Wire Line
+	5850 3150 5850 3400
+Wire Wire Line
+	4550 1600 4550 1800
+$Comp
+L Device:R_POT RV?
+U 1 1 6516F99F
+P 12550 3150
+F 0 "RV?" H 12481 3196 50  0000 R CNN
+F 1 "R_POT" H 12481 3105 50  0000 R CNN
+F 2 "" H 12550 3150 50  0001 C CNN
+F 3 "~" H 12550 3150 50  0001 C CNN
+	1    12550 3150
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	12550 3300 12550 3400
+$Comp
+L Transistor_FET:IRF7343PBF Q?
+U 1 1 65174558
+P 14950 2500
+F 0 "Q?" H 15154 2546 50  0000 L CNN
+F 1 "IRF7343PBF" H 15154 2455 50  0000 L CNN
+F 2 "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm" H 15150 2425 50  0001 L CNN
+F 3 "http://www.irf.com/product-info/datasheets/data/irf7343ipbf.pdf" H 15050 2500 50  0001 L CNN
+	1    14950 2500
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	15050 3400 12550 3400
+Connection ~ 12550 3400
+Wire Wire Line
+	15050 2300 15050 1600
+Wire Wire Line
+	15050 3300 15050 3400
+Wire Wire Line
+	15050 2700 15050 2850
+$Comp
+L Amplifier_Operational:TL072 U?
+U 1 1 6518AF9B
+P 14100 2500
+F 0 "U?" H 14100 2867 50  0000 C CNN
+F 1 "74AHC2G125DP,125" H 14100 2776 50  0000 C CNN
+F 2 "Package_SO:TSSOP-8_3x3mm_P0.65mm" H 14100 2500 50  0001 C CNN
+F 3 "https://www.digikey.nl/en/products/detail/nexperia-usa-inc/74AHC2G125DP-125/1229528" H 14100 2500 50  0001 C CNN
+	1    14100 2500
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	14750 2500 14400 2500
+Wire Wire Line
+	13800 2600 13700 2600
+Wire Wire Line
+	13700 2600 13700 2850
+Wire Wire Line
+	13700 2850 15050 2850
+Connection ~ 15050 2850
+Wire Wire Line
+	15050 2850 15050 3000
+$Comp
+L Converter_DCDC:MEE1S1209SC PS?
+U 1 1 651AB348
+P 3150 2550
+F 0 "PS?" H 3150 2917 50  0000 C CNN
+F 1 "MEE1S1209SC" H 3150 2826 50  0000 C CNN
+F 2 "Converter_DCDC:Converter_DCDC_Murata_MEE1SxxxxSC_THT" H 2100 2300 50  0001 L CNN
+F 3 "https://power.murata.com/pub/data/power/ncl/kdc_mee1.pdf" H 4200 2250 50  0001 L CNN
+	1    3150 2550
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C?
+U 1 1 651B2616
+P 1000 2500
+F 0 "C?" H 1115 2546 50  0000 L CNN
+F 1 "C" H 1115 2455 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric" H 1038 2350 50  0001 C CNN
+F 3 "~" H 1000 2500 50  0001 C CNN
+	1    1000 2500
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2750 2450 2450 2450
+Wire Notes Line
+	3150 500  3150 11200
+Wire Wire Line
+	12550 2050 12550 3000
+Wire Wire Line
+	12700 3150 13350 3150
+Wire Wire Line
+	13350 3150 13350 2850
+$Comp
+L Jumper:Jumper_3_Bridged12 JP?
+U 1 1 651C50A5
+P 12950 2850
+F 0 "JP?" H 12950 3054 50  0000 C CNN
+F 1 "Jumper_3_Bridged12" H 12950 2963 50  0000 C CNN
+F 2 "" H 12950 2850 50  0001 C CNN
+F 3 "~" H 12950 2850 50  0001 C CNN
+	1    12950 2850
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	13200 2850 13350 2850
+Wire Wire Line
+	12950 2700 12950 2400
+Wire Wire Line
+	12950 2400 13800 2400
+$Comp
+L Amplifier_Operational:TL072 U?
+U 2 1 6520B5AF
+P 6900 2900
+F 0 "U?" H 6900 3267 50  0000 C CNN
+F 1 "74AHC2G125DP,125" H 6900 3176 50  0000 C CNN
+F 2 "Package_SO:TSSOP-8_3x3mm_P0.65mm" H 6900 2900 50  0001 C CNN
+F 3 "https://www.digikey.nl/en/products/detail/nexperia-usa-inc/74AHC2G125DP-125/1229528" H 6900 2900 50  0001 C CNN
+	2    6900 2900
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 65217463
+P 1000 3400
+F 0 "#PWR?" H 1000 3150 50  0001 C CNN
+F 1 "GND" H 1005 3227 50  0000 C CNN
+F 2 "" H 1000 3400 50  0001 C CNN
+F 3 "" H 1000 3400 50  0001 C CNN
+	1    1000 3400
+	1    0    0    -1  
+$EndComp
+Connection ~ 1000 3400
+Connection ~ 5850 3400
+Wire Wire Line
+	7200 2900 7200 3150
+Wire Wire Line
+	7200 3150 6600 3150
+Wire Wire Line
+	6600 3150 6600 3000
+Wire Wire Line
+	6600 2800 6450 2800
+$Comp
+L Amplifier_Operational:TL072 U?
+U 3 1 65211154
+P 7700 2650
+F 0 "U?" H 7658 2696 50  0000 L CNN
+F 1 "74AHC2G125DP,125" H 7658 2605 50  0000 L CNN
+F 2 "Package_SO:TSSOP-8_3x3mm_P0.65mm" H 7700 2650 50  0001 C CNN
+F 3 "https://www.digikey.nl/en/products/detail/nexperia-usa-inc/74AHC2G125DP-125/1229528" H 7700 2650 50  0001 C CNN
+	3    7700 2650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2450 2650 2750 2650
+Connection ~ 8550 3400
+Wire Wire Line
+	7600 2950 7600 3400
+Wire Wire Line
+	6450 3100 6450 3400
+Wire Wire Line
+	5850 3400 6450 3400
+Connection ~ 4550 1600
+Wire Wire Line
+	3550 2450 4150 2450
+Wire Wire Line
+	4150 2100 4150 2450
+Connection ~ 4150 2450
+Wire Wire Line
+	3550 2650 3800 2650
+Wire Wire Line
+	4150 2450 4150 2800
+Wire Wire Line
+	5150 2750 5150 3400
+Wire Wire Line
+	5850 2050 5850 2450
+Connection ~ 5850 2450
+Wire Wire Line
+	5850 2450 5850 2850
+Wire Wire Line
+	7600 2050 7600 2350
+Wire Wire Line
+	3800 2650 3800 3400
+Wire Wire Line
+	4150 3100 4150 3400
+Connection ~ 4150 3400
+Wire Wire Line
+	4150 3400 3800 3400
+Wire Wire Line
+	4550 2100 4550 3400
+Connection ~ 4550 3400
+Wire Wire Line
+	4550 3400 4150 3400
+$Comp
+L PR7~Custom:ISO1640BDR U?
+U 1 1 65323BD0
+P 3150 4200
+F 0 "U?" H 3150 4615 50  0000 C CNN
+F 1 "74AHC2G125DP,125" H 3150 4524 50  0000 C CNN
+F 2 "Package_SO:TSSOP-8_3x3mm_P0.65mm" H 3150 3900 50  0001 C CNN
+F 3 "https://www.digikey.nl/en/products/detail/nexperia-usa-inc/74AHC2G125DP-125/1229528" H 3150 4600 50  0001 C CNN
+	1    3150 4200
+	1    0    0    -1  
+$EndComp
+$Comp
+L PR7~Custom:MCP4651T-103E_ST U?
+U 1 1 653319F2
+P 11150 2800
+F 0 "U?" H 11150 3365 50  0000 C CNN
+F 1 "74AHC2G125DP,125" H 11150 3274 50  0000 C CNN
+F 2 "Package_SO:TSSOP-8_3x3mm_P0.65mm" H 11200 2350 50  0001 C CNN
+F 3 "https://www.digikey.nl/en/products/detail/nexperia-usa-inc/74AHC2G125DP-125/1229528" H 11150 3350 50  0001 C CNN
+	1    11150 2800
+	1    0    0    -1  
+$EndComp
+Connection ~ 7600 2050
+Connection ~ 7600 3400
+Wire Wire Line
+	7600 3400 8550 3400
+Wire Wire Line
+	8250 1600 4550 1600
+Wire Wire Line
+	8850 1600 8950 1600
+Wire Wire Line
+	8550 2750 8550 3400
+Wire Wire Line
+	8550 2450 8550 2300
+Connection ~ 8950 1600
+Wire Wire Line
+	8950 1600 9900 1600
+Wire Wire Line
+	8550 3400 8950 3400
+Wire Wire Line
+	8950 1600 8950 2450
+Wire Wire Line
+	8950 2750 8950 3400
+Connection ~ 8950 3400
+Wire Wire Line
+	11950 2500 11950 2050
+Wire Wire Line
+	12050 3100 12050 3400
+Wire Wire Line
+	11950 2900 11950 2500
+Connection ~ 11950 2500
+Wire Wire Line
+	8950 3400 9900 3400
+$Comp
+L Device:R_POT RV?
+U 1 1 6515F059
+P 9900 3150
+F 0 "RV?" H 9831 3196 50  0000 R CNN
+F 1 "R_POT" H 9831 3105 50  0000 R CNN
+F 2 "" H 9900 3150 50  0001 C CNN
+F 3 "~" H 9900 3150 50  0001 C CNN
+	1    9900 3150
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	9900 3300 9900 3400
+$Comp
+L Jumper:Jumper_3_Bridged12 JP?
+U 1 1 651EC990
+P 9500 2850
+F 0 "JP?" H 9500 3054 50  0000 C CNN
+F 1 "Jumper_3_Bridged12" H 9500 2963 50  0000 C CNN
+F 2 "" H 9500 2850 50  0001 C CNN
+F 3 "~" H 9500 2850 50  0001 C CNN
+	1    9500 2850
+	1    0    0    1   
+$EndComp
+Wire Wire Line
+	9750 3150 9100 3150
+Wire Wire Line
+	9100 2850 9250 2850
+Wire Wire Line
+	9100 3150 9100 2850
+Connection ~ 9900 3400
+Wire Wire Line
+	10250 2900 10250 1600
+Wire Wire Line
+	10150 3000 10150 2850
+Wire Wire Line
+	9900 3000 9900 1600
+Connection ~ 9900 1600
+Wire Wire Line
+	9500 2700 9500 2300
+Wire Wire Line
+	9500 2300 8550 2300
+Connection ~ 8550 2300
+Wire Wire Line
+	8550 2300 8550 1900
+Connection ~ 12050 3400
+Wire Wire Line
+	12050 3400 12550 3400
+Wire Wire Line
+	11650 3100 12050 3100
+Wire Wire Line
+	11650 3000 12050 3000
+Wire Wire Line
+	12050 3000 12050 2850
+Wire Wire Line
+	12050 2850 12700 2850
+Connection ~ 11950 2050
+Wire Wire Line
+	11950 2050 12550 2050
+Wire Wire Line
+	7600 2050 11950 2050
+Wire Wire Line
+	11650 2500 11950 2500
+Wire Wire Line
+	11650 2900 11950 2900
+Wire Wire Line
+	10650 2700 10550 2700
+Wire Wire Line
+	10650 2600 10450 2600
+Connection ~ 10250 1600
+Wire Wire Line
+	10250 1600 15050 1600
+Connection ~ 10350 3400
+Wire Wire Line
+	10350 3400 12050 3400
+Wire Wire Line
+	9900 1600 10250 1600
+Wire Wire Line
+	9900 3400 10350 3400
+Wire Wire Line
+	10350 2800 10350 3100
+Wire Wire Line
+	10650 2800 10350 2800
+Wire Wire Line
+	10650 2900 10250 2900
+Wire Wire Line
+	10650 3000 10150 3000
+Wire Wire Line
+	10650 3100 10350 3100
+Connection ~ 10350 3100
+Wire Wire Line
+	10350 3100 10350 3400
+Wire Wire Line
+	9750 2850 10150 2850
+Wire Wire Line
+	3700 4150 10550 4150
+Wire Wire Line
+	10550 2700 10550 4150
+Wire Wire Line
+	3700 4250 10450 4250
+Wire Wire Line
+	10450 2600 10450 4250
+Wire Wire Line
+	2450 1600 2450 2450
+Wire Wire Line
+	2450 2650 2450 3400
+Wire Wire Line
+	1000 1600 1000 2350
+Wire Wire Line
+	1000 2650 1000 3400
+Wire Wire Line
+	1000 1600 1350 1600
+Wire Wire Line
+	1000 3400 1700 3400
+$Comp
+L Regulator_Linear:L7805 U?
+U 1 1 65285216
+P 1700 2450
+F 0 "U?" H 1700 2692 50  0000 C CNN
+F 1 "74AHC2G125DP,125" H 1700 2601 50  0000 C CNN
+F 2 "Package_SO:TSSOP-8_3x3mm_P0.65mm" H 1725 2300 50  0001 L CIN
+F 3 "https://www.digikey.nl/en/products/detail/nexperia-usa-inc/74AHC2G125DP-125/1229528" H 1700 2400 50  0001 C CNN
+	1    1700 2450
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1400 2450 1350 2450
+Wire Wire Line
+	1350 2450 1350 1600
+Connection ~ 1350 1600
+Wire Wire Line
+	1350 1600 2450 1600
+Wire Wire Line
+	1700 2750 1700 3400
+Connection ~ 1700 3400
+Wire Wire Line
+	1700 3400 2450 3400
+Wire Wire Line
+	2050 2450 2050 4050
+Wire Wire Line
+	2000 2450 2050 2450
+Wire Wire Line
+	2050 4050 2600 4050
+$Comp
+L power:GND #PWR?
+U 1 1 652A7DB0
+P 2500 4450
+F 0 "#PWR?" H 2500 4200 50  0001 C CNN
+F 1 "GND" H 2505 4277 50  0000 C CNN
+F 2 "" H 2500 4450 50  0001 C CNN
+F 3 "" H 2500 4450 50  0001 C CNN
+	1    2500 4450
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2500 4450 2500 4350
+Wire Wire Line
+	2500 4350 2600 4350
+Connection ~ 5150 3400
+Wire Wire Line
+	5150 3400 4550 3400
+Wire Wire Line
+	5150 3400 5600 3400
+Wire Wire Line
+	4150 2450 4850 2450
+Wire Wire Line
+	5450 2450 5500 2450
+Wire Wire Line
+	3700 4050 5500 4050
+Wire Wire Line
+	5500 4050 5500 2450
+Connection ~ 5500 2450
+Wire Wire Line
+	5500 2450 5850 2450
+Wire Wire Line
+	3700 4350 5600 4350
+Wire Wire Line
+	5600 4350 5600 3400
+Connection ~ 5600 3400
+Wire Wire Line
+	5600 3400 5850 3400
+$Comp
+L Device:C C?
+U 1 1 652CDF43
+P 4150 2950
+F 0 "C?" H 4265 2996 50  0000 L CNN
+F 1 "C" H 4265 2905 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric" H 4188 2800 50  0001 C CNN
+F 3 "~" H 4150 2950 50  0001 C CNN
+	1    4150 2950
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C?
+U 1 1 652D6C13
+P 4550 1950
+F 0 "C?" H 4665 1996 50  0000 L CNN
+F 1 "C" H 4665 1905 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric" H 4588 1800 50  0001 C CNN
+F 3 "~" H 4550 1950 50  0001 C CNN
+	1    4550 1950
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C?
+U 1 1 652DF631
+P 5850 3000
+F 0 "C?" H 5965 3046 50  0000 L CNN
+F 1 "C" H 5965 2955 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric" H 5888 2850 50  0001 C CNN
+F 3 "~" H 5850 3000 50  0001 C CNN
+	1    5850 3000
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C?
+U 1 1 652E8103
+P 8550 2600
+F 0 "C?" H 8665 2646 50  0000 L CNN
+F 1 "C" H 8665 2555 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric" H 8588 2450 50  0001 C CNN
+F 3 "~" H 8550 2600 50  0001 C CNN
+	1    8550 2600
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C?
+U 1 1 652F0CD1
+P 8950 2600
+F 0 "C?" H 9065 2646 50  0000 L CNN
+F 1 "C" H 9065 2555 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric" H 8988 2450 50  0001 C CNN
+F 3 "~" H 8950 2600 50  0001 C CNN
+	1    8950 2600
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 652F9B03
+P 6450 2650
+F 0 "R?" H 6520 2696 50  0000 L CNN
+F 1 "R" H 6520 2605 50  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric" V 6380 2650 50  0001 C CNN
+F 3 "~" H 6450 2650 50  0001 C CNN
+	1    6450 2650
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 653024A7
+P 6450 2950
+F 0 "R?" H 6520 2996 50  0000 L CNN
+F 1 "R" H 6520 2905 50  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric" V 6380 2950 50  0001 C CNN
+F 3 "~" H 6450 2950 50  0001 C CNN
+	1    6450 2950
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 6530AF2A
+P 15050 3150
+F 0 "R?" H 15120 3196 50  0000 L CNN
+F 1 "R" H 15120 3105 50  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric" V 14980 3150 50  0001 C CNN
+F 3 "~" H 15050 3150 50  0001 C CNN
+	1    15050 3150
+	1    0    0    -1  
+$EndComp
+$Comp
+L 74xGxx:74AUC2G125 U?
+U 1 1 65312E2F
+P 1550 4150
+F 0 "U?" H 1525 3975 50  0000 C CNN
+F 1 "74AHC2G125DP,125" H 1525 3884 50  0000 C CNN
+F 2 "Package_SO:TSSOP-8_3x3mm_P0.65mm" H 1550 4150 50  0001 C CNN
+F 3 "https://www.digikey.nl/en/products/detail/nexperia-usa-inc/74AHC2G125DP-125/1229528" H 1550 4150 50  0001 C CNN
+	1    1550 4150
+	1    0    0    1   
+$EndComp
+$Comp
+L 74xGxx:74AUC2G125 U?
+U 2 1 6531370C
+P 1550 5150
+F 0 "U?" H 1525 4975 50  0000 C CNN
+F 1 "74AHC2G125DP,125" H 1525 4884 50  0000 C CNN
+F 2 "Package_SO:TSSOP-8_3x3mm_P0.65mm" H 1550 5150 50  0001 C CNN
+F 3 "https://www.digikey.nl/en/products/detail/nexperia-usa-inc/74AHC2G125DP-125/1229528" H 1550 5150 50  0001 C CNN
+	2    1550 5150
+	1    0    0    1   
+$EndComp
+Wire Wire Line
+	2600 4150 1800 4150
+Wire Wire Line
+	5850 2050 6450 2050
+Connection ~ 6450 2800
+Connection ~ 6450 3400
+Wire Wire Line
+	6450 3400 7600 3400
+Wire Wire Line
+	6450 2500 6450 2050
+Connection ~ 6450 2050
+Wire Wire Line
+	6450 2050 7600 2050
+$EndSCHEMATC
