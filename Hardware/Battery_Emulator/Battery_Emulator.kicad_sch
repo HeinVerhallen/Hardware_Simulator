@@ -1704,7 +1704,7 @@
     (property "Value" "Vin" (at 36.83 62.865 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Footprint" "" (at 39.37 60.325 0)
+    (property "Footprint" "Connector_PinSocket_2.00mm:PinSocket_1x02_P2.00mm_Vertical" (at 39.37 60.325 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (at 39.37 60.325 0)
