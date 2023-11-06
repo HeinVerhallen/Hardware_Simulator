@@ -1,0 +1,5 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "PR7 Custom")(type "KiCad")(uri "${KIPRJMOD}/PR7 Custom.kicad_sym")(options "")(descr ""))
+  (lib (name "Hardware_Simulator-rescue")(type "KiCad")(uri "${KIPRJMOD}/Battery_Emulator-rescue.kicad_sym")(options "")(descr ""))
+)
