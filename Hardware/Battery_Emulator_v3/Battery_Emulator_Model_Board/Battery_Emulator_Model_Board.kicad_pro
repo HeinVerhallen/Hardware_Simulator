@@ -34,9 +34,9 @@
         "other_text_thickness": 0.15,
         "other_text_upright": false,
         "pads": {
-          "drill": 0.6,
-          "height": 0.65,
-          "width": 0.65
+          "drill": 0.762,
+          "height": 1.524,
+          "width": 1.524
         },
         "silk_line_width": 0.15,
         "silk_text_italic": false,
@@ -174,7 +174,6 @@
       "track_widths": [
         0.0,
         0.3,
-        2.25,
         7.2
       ],
       "via_dimensions": [
@@ -412,7 +411,7 @@
     "pinned_symbol_libs": []
   },
   "meta": {
-    "filename": "Battery_Emulator.kicad_pro",
+    "filename": "Battery_Emulator_Model_Board.kicad_pro",
     "version": 1
   },
   "net_settings": {
@@ -429,9 +428,9 @@
         "name": "Default",
         "pcb_color": "rgba(0, 0, 0, 0.000)",
         "schematic_color": "rgba(0, 0, 0, 0.000)",
-        "track_width": 0.2,
-        "via_diameter": 0.6,
-        "via_drill": 0.3,
+        "track_width": 0.25,
+        "via_diameter": 0.8,
+        "via_drill": 0.4,
         "wire_width": 6
       }
     ],
@@ -467,9 +466,9 @@
       "intersheets_ref_show": false,
       "intersheets_ref_suffix": "",
       "junction_size_choice": 3,
-      "label_size_ratio": 0.25,
-      "pin_symbol_size": 0.0,
-      "text_offset_ratio": 0.08
+      "label_size_ratio": 0.375,
+      "pin_symbol_size": 25.0,
+      "text_offset_ratio": 0.15
     },
     "legacy_lib_dir": "",
     "legacy_lib_list": [],
@@ -489,24 +488,8 @@
   },
   "sheets": [
     [
-      "bb7641ff-0dfd-4f4a-b3be-57afbbb9fdac",
+      "148b0eed-bd25-41de-bd25-36484a90c6fc",
       ""
-    ],
-    [
-      "86a0f187-fc20-4f8c-b621-2752c8234446",
-      "Cell_1"
-    ],
-    [
-      "b6a9662d-5d6a-45a2-997c-bd44d3cd27c8",
-      "Cell_2"
-    ],
-    [
-      "9e64a729-6adc-46a2-82ae-c445b486d477",
-      "Cell_3"
-    ],
-    [
-      "c6b7f9ee-0ac8-4ec0-aa5c-5805ca169953",
-      "Cell_4"
     ]
   ],
   "text_variables": {}
