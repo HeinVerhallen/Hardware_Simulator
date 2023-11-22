@@ -1054,6 +1054,9 @@
   (junction (at 49.53 21.59) (diameter 0) (color 0 0 0 0)
     (uuid 8795da4b-6a16-4458-939e-5c254d8acee9)
   )
+  (junction (at 107.315 36.83) (diameter 0) (color 0 0 0 0)
+    (uuid a4fe1aa9-8658-4500-b55a-7c7d05007843)
+  )
   (junction (at 77.47 113.03) (diameter 0) (color 0 0 0 0)
     (uuid c1512ec4-eb3d-4546-9d82-6f254ac6452b)
   )
@@ -4704,6 +4707,42 @@
       (project "Battery_Emulator"
         (path "/bb7641ff-0dfd-4f4a-b3be-57afbbb9fdac"
           (reference "C22") (unit 1)
+        )
+      )
+    )
+  )
+
+  (symbol (lib_id "Connector:TestPoint") (at 107.315 36.83 180) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
+    (uuid d7391107-8b16-4114-aa19-8f5651ceb6b2)
+    (property "Reference" "TP4" (at 109.855 38.862 0)
+      (effects (font (size 1.27 1.27)) (justify right))
+    )
+    (property "Value" "GND" (at 109.855 41.402 0)
+      (effects (font (size 1.27 1.27)) (justify right))
+    )
+    (property "Footprint" "TestPoint:TestPoint_Pad_D2.5mm" (at 102.235 36.83 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "~" (at 102.235 36.83 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid d347733c-0dd1-4fcd-bade-60d0cc53f519))
+    (instances
+      (project "Battery_Emulator_Model_Board"
+        (path "/148b0eed-bd25-41de-bd25-36484a90c6fc"
+          (reference "TP4") (unit 1)
+        )
+      )
+      (project "Battery_Emulator"
+        (path "/bb7641ff-0dfd-4f4a-b3be-57afbbb9fdac/86a0f187-fc20-4f8c-b621-2752c8234446"
+          (reference "TP2") (unit 1)
+        )
+        (path "/bb7641ff-0dfd-4f4a-b3be-57afbbb9fdac/b6a9662d-5d6a-45a2-997c-bd44d3cd27c8"
+          (reference "TP3") (unit 1)
+        )
+        (path "/bb7641ff-0dfd-4f4a-b3be-57afbbb9fdac"
+          (reference "TP10") (unit 1)
         )
       )
     )
