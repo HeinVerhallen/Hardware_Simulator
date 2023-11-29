@@ -7,6 +7,8 @@ void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
 
+  CellEmulator cell1 = new CellEmulator(adress, 1);
+
   pinMode(LedPin, OUTPUT);
 }
 
