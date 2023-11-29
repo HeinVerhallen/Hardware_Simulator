@@ -617,11 +617,11 @@
         )
       )
     )
-    (symbol "Mechanical:MountingHole" (pin_names (offset 1.016)) (in_bom yes) (on_board yes)
-      (property "Reference" "H" (at 0 5.08 0)
+    (symbol "Mechanical:MountingHole_Pad" (pin_numbers hide) (pin_names (offset 1.016) hide) (in_bom yes) (on_board yes)
+      (property "Reference" "H" (at 0 6.35 0)
         (effects (font (size 1.27 1.27)))
       )
-      (property "Value" "MountingHole" (at 0 3.175 0)
+      (property "Value" "MountingHole_Pad" (at 0 4.445 0)
         (effects (font (size 1.27 1.27)))
       )
       (property "Footprint" "" (at 0 0 0)
@@ -633,16 +633,22 @@
       (property "ki_keywords" "mounting hole" (at 0 0 0)
         (effects (font (size 1.27 1.27)) hide)
       )
-      (property "ki_description" "Mounting Hole without connection" (at 0 0 0)
+      (property "ki_description" "Mounting Hole with connection" (at 0 0 0)
         (effects (font (size 1.27 1.27)) hide)
       )
-      (property "ki_fp_filters" "MountingHole*" (at 0 0 0)
+      (property "ki_fp_filters" "MountingHole*Pad*" (at 0 0 0)
         (effects (font (size 1.27 1.27)) hide)
       )
-      (symbol "MountingHole_0_1"
-        (circle (center 0 0) (radius 1.27)
+      (symbol "MountingHole_Pad_0_1"
+        (circle (center 0 1.27) (radius 1.27)
           (stroke (width 1.27) (type default))
           (fill (type none))
+        )
+      )
+      (symbol "MountingHole_Pad_1_1"
+        (pin input line (at 0 -2.54 90) (length 2.54)
+          (name "1" (effects (font (size 1.27 1.27))))
+          (number "1" (effects (font (size 1.27 1.27))))
         )
       )
     )
@@ -2672,6 +2678,36 @@
     )
   )
 
+  (symbol (lib_id "power:GND") (at 274.32 130.81 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no)
+    (uuid 28e1e663-aae1-4d1a-beae-493387e628b0)
+    (property "Reference" "#PWR063" (at 274.32 137.16 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Value" "GND" (at 274.32 134.62 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (property "Footprint" "" (at 274.32 130.81 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "" (at 274.32 130.81 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid ada6be70-3599-407b-a753-5a3ac619a801))
+    (instances
+      (project "Battery_Emulator_Model_Board"
+        (path "/148b0eed-bd25-41de-bd25-36484a90c6fc"
+          (reference "#PWR063") (unit 1)
+        )
+      )
+      (project "Battery_Emulator"
+        (path "/bb7641ff-0dfd-4f4a-b3be-57afbbb9fdac"
+          (reference "#PWR07") (unit 1)
+        )
+      )
+    )
+  )
+
   (symbol (lib_id "Device:C") (at 91.44 29.21 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 2d8741fc-b233-4686-a983-a60c604430df)
@@ -2723,6 +2759,36 @@
       (project "Battery_Emulator_Model_Board"
         (path "/148b0eed-bd25-41de-bd25-36484a90c6fc"
           (reference "#PWR057") (unit 1)
+        )
+      )
+      (project "Battery_Emulator"
+        (path "/bb7641ff-0dfd-4f4a-b3be-57afbbb9fdac"
+          (reference "#PWR07") (unit 1)
+        )
+      )
+    )
+  )
+
+  (symbol (lib_id "power:GND") (at 255.27 130.81 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no)
+    (uuid 32000046-ca00-4fc2-9e51-9a6996b0ac8f)
+    (property "Reference" "#PWR060" (at 255.27 137.16 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Value" "GND" (at 255.27 134.62 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (property "Footprint" "" (at 255.27 130.81 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "" (at 255.27 130.81 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid 9d8cc5da-1245-435a-bede-d99f22d99f78))
+    (instances
+      (project "Battery_Emulator_Model_Board"
+        (path "/148b0eed-bd25-41de-bd25-36484a90c6fc"
+          (reference "#PWR060") (unit 1)
         )
       )
       (project "Battery_Emulator"
@@ -2920,21 +2986,22 @@
     )
   )
 
-  (symbol (lib_id "Mechanical:MountingHole") (at 259.715 134.62 0) (unit 1)
+  (symbol (lib_id "Mechanical:MountingHole_Pad") (at 255.27 139.7 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 3e71d4f7-8a83-4d6e-aea1-f9c997327df4)
-    (property "Reference" "H3" (at 262.89 133.35 0)
+    (property "Reference" "H3" (at 258.445 138.43 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Value" "MountingHole" (at 262.89 135.89 0)
+    (property "Value" "MountingHole" (at 258.445 140.97 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Footprint" "MountingHole:MountingHole_3.2mm_M3" (at 259.715 134.62 0)
+    (property "Footprint" "MountingHole:MountingHole_3.2mm_M3_Pad_Via" (at 255.27 139.7 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (property "Datasheet" "~" (at 259.715 134.62 0)
+    (property "Datasheet" "~" (at 255.27 139.7 0)
       (effects (font (size 1.27 1.27)) hide)
     )
+    (pin "1" (uuid aafffba1-ffbf-4c2d-94eb-efca9acc8e20))
     (instances
       (project "Battery_Emulator_Model_Board"
         (path "/148b0eed-bd25-41de-bd25-36484a90c6fc"
@@ -3034,21 +3101,52 @@
     )
   )
 
-  (symbol (lib_id "Mechanical:MountingHole") (at 259.715 139.065 0) (unit 1)
+  (symbol (lib_id "power:GND") (at 255.27 153.67 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no)
+    (uuid 43fea9ae-4231-462d-97af-c82604b7bc51)
+    (property "Reference" "#PWR055" (at 255.27 160.02 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Value" "GND" (at 255.27 157.48 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (property "Footprint" "" (at 255.27 153.67 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "" (at 255.27 153.67 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid 9ab4adc0-ea4b-403e-bb70-a2769cc37adc))
+    (instances
+      (project "Battery_Emulator_Model_Board"
+        (path "/148b0eed-bd25-41de-bd25-36484a90c6fc"
+          (reference "#PWR055") (unit 1)
+        )
+      )
+      (project "Battery_Emulator"
+        (path "/bb7641ff-0dfd-4f4a-b3be-57afbbb9fdac"
+          (reference "#PWR07") (unit 1)
+        )
+      )
+    )
+  )
+
+  (symbol (lib_id "Mechanical:MountingHole_Pad") (at 255.27 151.13 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 44239290-1939-40d3-a73f-9776f50a5ae4)
-    (property "Reference" "H4" (at 262.89 137.795 0)
+    (property "Reference" "H4" (at 258.445 149.86 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Value" "MountingHole" (at 262.89 140.335 0)
+    (property "Value" "MountingHole" (at 258.445 152.4 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Footprint" "MountingHole:MountingHole_3.2mm_M3" (at 259.715 139.065 0)
+    (property "Footprint" "MountingHole:MountingHole_3.2mm_M3_Pad_Via" (at 255.27 151.13 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (property "Datasheet" "~" (at 259.715 139.065 0)
+    (property "Datasheet" "~" (at 255.27 151.13 0)
       (effects (font (size 1.27 1.27)) hide)
     )
+    (pin "1" (uuid 307253af-9c17-4df7-af32-c945c24411b1))
     (instances
       (project "Battery_Emulator_Model_Board"
         (path "/148b0eed-bd25-41de-bd25-36484a90c6fc"
@@ -3141,6 +3239,36 @@
       (project "Battery_Emulator_Model_Board"
         (path "/148b0eed-bd25-41de-bd25-36484a90c6fc"
           (reference "J12") (unit 1)
+        )
+      )
+    )
+  )
+
+  (symbol (lib_id "power:GND") (at 255.27 119.38 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no)
+    (uuid 4bc709f8-69bf-4356-a08d-c06c6e9df59a)
+    (property "Reference" "#PWR061" (at 255.27 125.73 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Value" "GND" (at 255.27 123.19 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (property "Footprint" "" (at 255.27 119.38 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "" (at 255.27 119.38 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid 98da969c-53f1-4b36-abca-947cff74e19b))
+    (instances
+      (project "Battery_Emulator_Model_Board"
+        (path "/148b0eed-bd25-41de-bd25-36484a90c6fc"
+          (reference "#PWR061") (unit 1)
+        )
+      )
+      (project "Battery_Emulator"
+        (path "/bb7641ff-0dfd-4f4a-b3be-57afbbb9fdac"
+          (reference "#PWR07") (unit 1)
         )
       )
     )
@@ -3266,21 +3394,22 @@
     )
   )
 
-  (symbol (lib_id "Mechanical:MountingHole") (at 259.715 125.73 0) (unit 1)
+  (symbol (lib_id "Mechanical:MountingHole_Pad") (at 255.27 116.84 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 575adf48-b8fa-48ba-bf74-f0539e5aa516)
-    (property "Reference" "H1" (at 262.89 124.46 0)
+    (property "Reference" "H1" (at 258.445 115.57 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Value" "MountingHole" (at 262.89 127 0)
+    (property "Value" "MountingHole" (at 258.445 118.11 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Footprint" "MountingHole:MountingHole_3.2mm_M3" (at 259.715 125.73 0)
+    (property "Footprint" "MountingHole:MountingHole_3.2mm_M3_Pad_Via" (at 255.27 116.84 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (property "Datasheet" "~" (at 259.715 125.73 0)
+    (property "Datasheet" "~" (at 255.27 116.84 0)
       (effects (font (size 1.27 1.27)) hide)
     )
+    (pin "1" (uuid 08b53a72-3000-4055-9416-75f7d1f58ef8))
     (instances
       (project "Battery_Emulator_Model_Board"
         (path "/148b0eed-bd25-41de-bd25-36484a90c6fc"
@@ -3700,7 +3829,7 @@
     (property "Value" "1N4007" (at 30.48 19.2311 0)
       (effects (font (size 1.27 1.27)))
     )
-    (property "Footprint" "Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal" (at 30.48 26.035 0)
+    (property "Footprint" "Diode_THT:D_DO-41_SOD81_P2.54mm_Vertical_KathodeUp" (at 30.48 26.035 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "http://www.vishay.com/docs/88503/1n4001.pdf" (at 30.48 21.59 0)
@@ -3878,6 +4007,61 @@
       (project "Battery_Emulator_Model_Board"
         (path "/148b0eed-bd25-41de-bd25-36484a90c6fc"
           (reference "J13") (unit 1)
+        )
+      )
+    )
+  )
+
+  (symbol (lib_id "Mechanical:MountingHole_Pad") (at 274.32 116.84 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
+    (uuid 888e8165-9fac-42b7-95e8-d1bcc864fe42)
+    (property "Reference" "H5" (at 277.495 115.57 0)
+      (effects (font (size 1.27 1.27)) (justify left))
+    )
+    (property "Value" "MountingHole" (at 277.495 118.11 0)
+      (effects (font (size 1.27 1.27)) (justify left))
+    )
+    (property "Footprint" "MountingHole:MountingHole_3.2mm_M3_Pad_Via" (at 274.32 116.84 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "~" (at 274.32 116.84 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid b62d585e-301f-413c-b632-9416f87df9cb))
+    (instances
+      (project "Battery_Emulator_Model_Board"
+        (path "/148b0eed-bd25-41de-bd25-36484a90c6fc"
+          (reference "H5") (unit 1)
+        )
+      )
+    )
+  )
+
+  (symbol (lib_id "power:GND") (at 274.32 142.24 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no)
+    (uuid 892b6d56-57f6-47e8-8d32-544e2a13ac85)
+    (property "Reference" "#PWR064" (at 274.32 148.59 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Value" "GND" (at 274.32 146.05 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (property "Footprint" "" (at 274.32 142.24 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "" (at 274.32 142.24 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid 65f7d564-2b5f-4a42-b2a4-842214836892))
+    (instances
+      (project "Battery_Emulator_Model_Board"
+        (path "/148b0eed-bd25-41de-bd25-36484a90c6fc"
+          (reference "#PWR064") (unit 1)
+        )
+      )
+      (project "Battery_Emulator"
+        (path "/bb7641ff-0dfd-4f4a-b3be-57afbbb9fdac"
+          (reference "#PWR07") (unit 1)
         )
       )
     )
@@ -4068,6 +4252,36 @@
     )
   )
 
+  (symbol (lib_id "power:GND") (at 274.32 119.38 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no)
+    (uuid 9eabf66f-5c61-4fb7-b13a-1768a8be536a)
+    (property "Reference" "#PWR062" (at 274.32 125.73 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Value" "GND" (at 274.32 123.19 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (property "Footprint" "" (at 274.32 119.38 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "" (at 274.32 119.38 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid 53724586-ce2d-4012-a26b-e0c6f7e1e2e0))
+    (instances
+      (project "Battery_Emulator_Model_Board"
+        (path "/148b0eed-bd25-41de-bd25-36484a90c6fc"
+          (reference "#PWR062") (unit 1)
+        )
+      )
+      (project "Battery_Emulator"
+        (path "/bb7641ff-0dfd-4f4a-b3be-57afbbb9fdac"
+          (reference "#PWR07") (unit 1)
+        )
+      )
+    )
+  )
+
   (symbol (lib_id "power:+12V") (at 189.865 93.98 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 9ffb0d68-d6c7-4e46-8ca8-3989a3f131dc)
@@ -4184,6 +4398,31 @@
       (project "Battery_Emulator"
         (path "/bb7641ff-0dfd-4f4a-b3be-57afbbb9fdac"
           (reference "#PWR04") (unit 1)
+        )
+      )
+    )
+  )
+
+  (symbol (lib_id "Mechanical:MountingHole_Pad") (at 274.32 128.27 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
+    (uuid a9454c30-1f69-4be8-813e-865c0c2f406d)
+    (property "Reference" "H6" (at 277.495 127 0)
+      (effects (font (size 1.27 1.27)) (justify left))
+    )
+    (property "Value" "MountingHole" (at 277.495 129.54 0)
+      (effects (font (size 1.27 1.27)) (justify left))
+    )
+    (property "Footprint" "MountingHole:MountingHole_3.2mm_M3_Pad_Via" (at 274.32 128.27 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "~" (at 274.32 128.27 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid cfdc20b4-3cc6-43ab-b0a6-b55297bb0945))
+    (instances
+      (project "Battery_Emulator_Model_Board"
+        (path "/148b0eed-bd25-41de-bd25-36484a90c6fc"
+          (reference "H6") (unit 1)
         )
       )
     )
@@ -4533,21 +4772,77 @@
     )
   )
 
-  (symbol (lib_id "Mechanical:MountingHole") (at 259.715 130.175 0) (unit 1)
+  (symbol (lib_id "power:GND") (at 274.32 153.67 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no)
+    (uuid c55dd73c-b0f4-4243-9eb9-9b9aecf2b3f0)
+    (property "Reference" "#PWR065" (at 274.32 160.02 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Value" "GND" (at 274.32 157.48 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (property "Footprint" "" (at 274.32 153.67 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "" (at 274.32 153.67 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid fd41a07a-f3f1-4c25-95b5-4e662e03fb3e))
+    (instances
+      (project "Battery_Emulator_Model_Board"
+        (path "/148b0eed-bd25-41de-bd25-36484a90c6fc"
+          (reference "#PWR065") (unit 1)
+        )
+      )
+      (project "Battery_Emulator"
+        (path "/bb7641ff-0dfd-4f4a-b3be-57afbbb9fdac"
+          (reference "#PWR07") (unit 1)
+        )
+      )
+    )
+  )
+
+  (symbol (lib_id "Mechanical:MountingHole_Pad") (at 274.32 151.13 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
+    (uuid c58a4e46-44fa-43c3-96c8-05aec5e89e0c)
+    (property "Reference" "H8" (at 277.495 149.86 0)
+      (effects (font (size 1.27 1.27)) (justify left))
+    )
+    (property "Value" "MountingHole" (at 277.495 152.4 0)
+      (effects (font (size 1.27 1.27)) (justify left))
+    )
+    (property "Footprint" "MountingHole:MountingHole_3.2mm_M3_Pad_Via" (at 274.32 151.13 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "~" (at 274.32 151.13 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid e27906de-2317-41c0-8787-5290682c0e21))
+    (instances
+      (project "Battery_Emulator_Model_Board"
+        (path "/148b0eed-bd25-41de-bd25-36484a90c6fc"
+          (reference "H8") (unit 1)
+        )
+      )
+    )
+  )
+
+  (symbol (lib_id "Mechanical:MountingHole_Pad") (at 255.27 128.27 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid c912105e-cfd3-419e-a7a4-34e4cb74e00e)
-    (property "Reference" "H2" (at 262.89 128.905 0)
+    (property "Reference" "H2" (at 258.445 127 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Value" "MountingHole" (at 262.89 131.445 0)
+    (property "Value" "MountingHole" (at 258.445 129.54 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Footprint" "MountingHole:MountingHole_3.2mm_M3" (at 259.715 130.175 0)
+    (property "Footprint" "MountingHole:MountingHole_3.2mm_M3_Pad_Via" (at 255.27 128.27 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (property "Datasheet" "~" (at 259.715 130.175 0)
+    (property "Datasheet" "~" (at 255.27 128.27 0)
       (effects (font (size 1.27 1.27)) hide)
     )
+    (pin "1" (uuid cd6445d0-3434-4202-90d0-39427451645d))
     (instances
       (project "Battery_Emulator_Model_Board"
         (path "/148b0eed-bd25-41de-bd25-36484a90c6fc"
@@ -4577,6 +4872,36 @@
       (project "Battery_Emulator_Model_Board"
         (path "/148b0eed-bd25-41de-bd25-36484a90c6fc"
           (reference "#PWR029") (unit 1)
+        )
+      )
+      (project "Battery_Emulator"
+        (path "/bb7641ff-0dfd-4f4a-b3be-57afbbb9fdac"
+          (reference "#PWR07") (unit 1)
+        )
+      )
+    )
+  )
+
+  (symbol (lib_id "power:GND") (at 255.27 142.24 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no)
+    (uuid ca9709b1-8a71-4b32-ba9e-8419d96c1f20)
+    (property "Reference" "#PWR059" (at 255.27 148.59 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Value" "GND" (at 255.27 146.05 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (property "Footprint" "" (at 255.27 142.24 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "" (at 255.27 142.24 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid 6d30adf5-bebe-486f-97c5-d22ba94cda20))
+    (instances
+      (project "Battery_Emulator_Model_Board"
+        (path "/148b0eed-bd25-41de-bd25-36484a90c6fc"
+          (reference "#PWR059") (unit 1)
         )
       )
       (project "Battery_Emulator"
@@ -5171,6 +5496,31 @@
       (project "Battery_Emulator"
         (path "/bb7641ff-0dfd-4f4a-b3be-57afbbb9fdac"
           (reference "#PWR08") (unit 1)
+        )
+      )
+    )
+  )
+
+  (symbol (lib_id "Mechanical:MountingHole_Pad") (at 274.32 139.7 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
+    (uuid f02de28b-e11f-4a2c-b43f-51f359f3e5cc)
+    (property "Reference" "H7" (at 277.495 138.43 0)
+      (effects (font (size 1.27 1.27)) (justify left))
+    )
+    (property "Value" "MountingHole" (at 277.495 140.97 0)
+      (effects (font (size 1.27 1.27)) (justify left))
+    )
+    (property "Footprint" "MountingHole:MountingHole_3.2mm_M3_Pad_Via" (at 274.32 139.7 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "~" (at 274.32 139.7 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid 8d1d5440-8839-4999-a6e7-ba85c3da3d17))
+    (instances
+      (project "Battery_Emulator_Model_Board"
+        (path "/148b0eed-bd25-41de-bd25-36484a90c6fc"
+          (reference "H7") (unit 1)
         )
       )
     )
