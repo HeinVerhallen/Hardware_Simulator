@@ -23,6 +23,8 @@ x       = value of the potentiometer wiper
 */
 #define V_REF 1.25
 #define N_STEPS 256
+#define MAX_CURRENT 13
+#define MAX_POT_VALUE 256
 #define CALCULATE_VOLTAGE(x) V_REF*N_STEPS/(N_STEPS-x)
 
 class CellEmulator
@@ -43,9 +45,6 @@ private:
     uint8_t cellNumber = 0;
     uint8_t potAddress = 0b01010000;
     uint8_t I2Cbus = 0;
-    uint8_t wiperValue;
-
-    void setAdress(uint8_t adress);
 
     uint8_t readWiperValue(uint8_t wiperSelect);
     void writeWiperValue(uint8_t wiperSelect,uint8_t value);
