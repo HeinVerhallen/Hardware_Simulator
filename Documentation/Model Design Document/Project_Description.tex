@@ -1,0 +1,46 @@
+\IEEEPARstart
+{T}{he} goal of this project is to design, build and test a battery pack emulator and (optionally)
+a load emulator. The positive outcome of this development ensures a safe way of testing BMSs
+
+
+The first iteration of the design inclde a Li-ion battery cell emulator, capable of chargin and discharging small currents (100 mA) and
+the voltage of the emulated cell is adjusted by a mechanical variable resistor. This iteration has no software and it is needed only for 
+testing the current sourcing and sinking. This design is completed on a single PCB.
+
+The second design interation is made modular - consisting of a model board PCB and cell PCBS, and software is implemented to contorol the 
+voltages of each emulated cell. The model board PCB has the microprocessor and is able to connect to and control up to 14 cell PCBs. Each
+cell PCB includes all the circuitry needed to source and sink current up to 12 A, control the voltage and emulate the temperature via software.
+Each emulated cell has a voltage and current range that is 20\% larger than the safe operating area of a Li-ion cell.
+
+
+
+% Because the project team members are not yet experts in the field of designing battery pack
+% emulators for BMS testing, it is chosen to design the battery pack emulator in iterations. In
+% the first design iteration a battery pack emulator circuit will be designed which emulates the
+% characteristics of a Li-ion battery pack. This battery pack emulator consists of two Li-ion cell
+% emulators which are capable of charging and discharging. The voltages of each emulated cell are
+% adjusted by a mechanical variable resistor. Each emulated cell has a voltage and current range
+% that is 20\% larger than the safe operating area of a Li-ion cell.
+
+% In the second design iteration software will be added to the battery emulator circuit to
+% control the voltages of each emulated cell via software. Also the temperature will be emulated
+% in the battery pack emulator. The third design iteration consists of expanding the amount of
+% emulated cells in the emulated battery pack to 14 cells. In the fourth design iteration a load
+% emulator will be designed to test the BMS under different load conditions. This load emulator
+% is capable of emulating electronics and motors.
+
+% At the end of the project it is expected that a battery pack emulator and optionally a load
+% emulator is delivered. And if the planning allows it, a research report on existing battery and
+% load emulators and the requirements for future battery and load emulators is delivered.
+% % \hfill mds
+ 
+% \hfill August 26, 2015
+
+% \subsection{Subsection Heading Here}
+% Subsection text here.
+
+% % needed in second column of first page if using \IEEEpubid
+% %\IEEEpubidadjcol
+
+% \subsubsection{Subsubsection Heading Here}
+% Subsubsection text here.
