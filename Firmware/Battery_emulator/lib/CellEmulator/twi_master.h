@@ -9,6 +9,10 @@
 #ifndef TWI_MASTER_H_
 #define TWI_MASTER_H_
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <avr/io.h>
 #include <util/twi.h>
 #include <stdbool.h>
@@ -32,8 +36,12 @@ typedef enum {
 	TW_FREQ_400K
 } twi_freq_mode_t;
 
-void tw_init(twi_freq_mode_t twi_freq, bool pullup_en);
+void tw_init(twi_freq_mode_t twi_freq_mode, bool pullup_en);
 ret_code_t tw_master_transmit(uint8_t slave_addr, uint8_t* p_data, uint8_t len, bool repeat_start);
 ret_code_t tw_master_receive(uint8_t slave_addr, uint8_t* p_data, uint8_t len);
 
+
+#ifdef __cplusplus
+}
+#endif
 #endif /* TWI_MASTER_H_ */
