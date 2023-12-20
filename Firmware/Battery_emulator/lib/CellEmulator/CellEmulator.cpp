@@ -1,24 +1,29 @@
 #include "CellEmulator.h"
+// #include "twi_master.h"
 #include "twi_master.h"
+#include <Arduino.h>
+#include <Wire.h>
 
-CellEmulator::CellEmulator(uint8_t address, uint8_t number){
+uint8_t pullen = 0;
+
+CellEmulator::CellEmulator(int address, int number){
     potAddress = address;
     cellNumber = number;
-    tw_init(TW_FREQ_250K, 0);
+    Wire.begin();
 }
 
-CellEmulator::~CellEmulator(){
-
-}
+CellEmulator::~CellEmulator(){}
 
 double CellEmulator::getVoltage(){
     //read potmeter1 value
-    return (double)V_REF*N_STEPS/(N_STEPS-readWiperValue(1));
+    // return (double)V_REF*N_STEPS/(N_STEPS-readWiperValue(1));
+    return (double)(readWiperValue(1)*5)/N_STEPS;
 }
 
-void CellEmulator::setVoltage(double voltage){
-    uint8_t value = N_STEPS-(V_REF*N_STEPS/voltage);
-    writeWiperValue(1, value);
+int CellEmulator::setVoltage(double voltage){
+    // int value = N_STEPS-(V_REF*N_STEPS/voltage);
+    int value = N_STEPS * voltage/5-1;
+    return writeWiperValue(1, value);
     //write potmeter1 value
 }
 
@@ -27,37 +32,44 @@ double CellEmulator::getCurrent(){
     return (double)(MAX_CURRENT*readWiperValue(0))/MAX_POT_VALUE;
 }
 
-void CellEmulator::setCurrent(double current){
+int CellEmulator::setCurrent(double current){
     //write potmeter0 value
-    //potvalue=maxvalue*current/maxcurrent
-    uint8_t value = MAX_POT_VALUE*current/MAX_CURRENT;
-    writeWiperValue(0, value);
+    // int value = MAX_POT_VALUE*current/MAX_CURRENT;
+    int value = N_STEPS*current/5-1;
+    return writeWiperValue(0, value);
 }
 
-uint8_t CellEmulator::readWiperValue(uint8_t wiperSelect){
+int CellEmulator::readWiperValue(int wiperSelect){
+    uint8_t data[2];
+
     selectI2Cbus(cellNumber);
-    uint8_t data[2] = {(wiperSelect<<4)&(0b11<<2)};
-    //                          register addres     read mode + 2reserved
-
-    //                  address     write   data   size repeated start true
-    tw_master_transmit((potAddress & 0xFE),&data[0],1,1);
-    tw_master_receive((potAddress | 0x1),&data[0], 2);
-    //                  address     read    data    size
-
-    return data[1];
+    Wire.beginTransmission(potAddress);
+    Wire.write(wiperSelect<<4|0b1100);
+    Wire.endTransmission();
+    Wire.requestFrom(potAddress, 2);
+    while(Wire.available()){
+        Wire.readBytes(data, 2);
+    }
+    return ((data[0]&0x01)<<8)|data[1];
 }
 
-void CellEmulator::writeWiperValue(uint8_t wiperSelect, uint8_t value){
+int CellEmulator::writeWiperValue(int wiperSelect, uint8_t value){
     selectI2Cbus(cellNumber);
-    uint8_t size = 2;    
-    uint8_t data[size] = {(wiperSelect<<4),value};
-    tw_master_transmit((potAddress & 0xFE),&data[0],size,0);
+    int size = 2;    
+    uint8_t data[size] = {(uint8_t)(wiperSelect<<4),value};
+    // tw_master_transmit((potAddress & 0xFE),&data[0],size,0);
+    Wire.beginTransmission(potAddress);
+    Wire.write(data, size);
+    return Wire.endTransmission();
     //                  address     write   data    size repeated start false
 }
 
 void selectI2Cbus(int cellNumber){
-    if(cellNumber > 1){
-        return;
+    if(cellNumber <= I2C_BUS_SLAVE_NUM){
+        PORTD |= (1<<I2C_BUS_SELECT_1);
+        PORTD &= ~(1<<I2C_BUS_SELECT_2);
+    } else{
+        PORTD |= (1<<I2C_BUS_SELECT_2);
+        PORTD &= ~(1<<I2C_BUS_SELECT_1);
     }
-    PORTD |= (cellNumber<<I2C_BUS_SELECT_1) | (!cellNumber<<I2C_BUS_SELECT_2);
 }

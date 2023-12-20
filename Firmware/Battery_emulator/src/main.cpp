@@ -1,15 +1,27 @@
 #include <Arduino.h>
 #include "CellEmulator.h"
 
-int LedPin = 13;
-
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
+}
 
-  CellEmulator cell1 = new CellEmulator(adress, 1);
+int state = 0;
+CellEmulator pot1(0b00101000, 1);
+CellEmulator pot2(0b00101001, 2);
+CellEmulator pot3(0b00101010, 8);
 
-  pinMode(LedPin, OUTPUT);
+void testFunction(int voltage){
+  Serial.print("voltage should be: ");
+  Serial.println(voltage);
+  Serial.println(pot1.setVoltage((double)voltage));
+  Serial.println(pot1.setCurrent((double)voltage-1));
+  Serial.print("voltage reading: ");
+  Serial.println(pot1.getVoltage());
+  Serial.println(pot2.setVoltage((double)voltage-1));
+  Serial.println(pot2.setCurrent((double)voltage-1));
+  Serial.println(pot2.setVoltage((double)voltage-1));
+  Serial.println(pot3.setCurrent((double)voltage-2));
 }
 
 void loop() {
@@ -17,36 +29,25 @@ void loop() {
   int size = 300;
   char buffer[size];
   int idx = 0;
-
-  for (int i = 0; i < size; i++)
-  {
-    buffer[i] = 0;
-  }
   
   while(Serial.available() > 0)
     {
       if (idx > size)
       {
-        Serial.read();
+        break;
       }
       else
       {
-        buffer[idx++] = Serial.read();
+        buffer[idx] = Serial.read();
       }
 
-      //  receiveVal = Serial.read();
-
-      //  if (receiveVal == 'H')
-      //  {
-      //   digitalWrite(LedPin, HIGH);
-      //  }
-      //  if (receiveVal == 'L')
-      //  {
-      //   digitalWrite(LedPin, LOW);
-      //  }
+      Serial.write(buffer[idx]);
+      if(buffer[idx] == 0x72){
+        testFunction(buffer[idx-1]-48);
+      }
+      idx = (idx+1)%size;
     }  
 
-    Serial.write(buffer);
 
     delay(50);   
 }

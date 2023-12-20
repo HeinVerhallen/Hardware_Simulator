@@ -12,6 +12,7 @@
 #define N_DATA_BYTES 2
 #define I2C_BUS_SELECT_1 PD2
 #define I2C_BUS_SELECT_2 PD3
+#define I2C_BUS_SLAVE_NUM 7
 
 // Vout = 320/(256-X) where X=potentiometer wiper value(8bit) and Vout is the battery voltage (regulator parameters: Vref = 1.25V, Iadj = 50uA) 
 /*Vout = Vref*Nsteps/(Nsteps-Regvalue) 
@@ -27,36 +28,37 @@ x       = value of the potentiometer wiper
 #define MAX_POT_VALUE 256
 #define CALCULATE_VOLTAGE(x) V_REF*N_STEPS/(N_STEPS-x)
 
+
 class CellEmulator
 {
 public:
-    CellEmulator(uint8_t address, uint8_t number);
+    CellEmulator(int address, int number);
     ~CellEmulator();
     
     double getVoltage();
-    void setVoltage(double voltage);
+    int setVoltage(double voltage);
 
     double getCurrent();
-    void setCurrent(double current);
+    int setCurrent(double current);
 
 private:
     double voltage = 2.5;
     double current = 0.1;
-    uint8_t cellNumber = 0;
-    uint8_t potAddress = 0b01010000;
-    uint8_t I2Cbus = 0;
+    int cellNumber = 0;
+    int potAddress = 0b01010000;
+    int I2Cbus = 0;
 
-    uint8_t readWiperValue(uint8_t wiperSelect);
-    void writeWiperValue(uint8_t wiperSelect,uint8_t value);
+    int readWiperValue(int wiperSelect);
+    int writeWiperValue(int wiperSelect,uint8_t value);
 };
 
+void selectI2Cbus(int cellNumber);
 #endif
 
 //I2C read sequence: 
 //address byte;                             command byte;                                   repeated start; control byte;                               data byte;              data byte;
 //fixed address;variable address;read/write //memory address(4 bit);command;    reserved(2bit)              //fixed address;variable addresss;read      //empty data(7 bit);D8  //data
 //"0101"        A2 A1 A0         0(write)   //(1->4)                11(read)    XX                          //"0101"        A2 A1 A0          1(read)   //"0000000"         MSB //D7->D0 
-
 
 //I2C write sequence: 
 //address byte;                             command byte;                                           data byte;
