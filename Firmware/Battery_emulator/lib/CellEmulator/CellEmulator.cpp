@@ -16,14 +16,22 @@ CellEmulator::~CellEmulator(){}
 
 double CellEmulator::getVoltage(){
     //read potmeter1 value
-    // return (double)V_REF*N_STEPS/(N_STEPS-readWiperValue(1));
-    return (double)(readWiperValue(1)*5)/N_STEPS;
+    #ifdef DEBUG_MODE
+        return (double)(readWiperValue(1)*5)/N_STEPS;
+    #else
+        // return (double)V_REF*N_STEPS/(N_STEPS-readWiperValue(1));
+        return readWiperValue(1);
+    #endif
 }
 
 int CellEmulator::setVoltage(double voltage){
-    // int value = N_STEPS-(V_REF*N_STEPS/voltage);
-    int value = N_STEPS * voltage/5-1;
-    return writeWiperValue(1, value);
+    #ifdef DEBUG_MODE
+        int value = N_STEPS * voltage/5-1;
+    #else
+        int value = N_STEPS-(V_REF*N_STEPS/voltage);
+    #endif
+        writeWiperValue(1, value);
+    return value;
     //write potmeter1 value
 }
 
@@ -34,8 +42,11 @@ double CellEmulator::getCurrent(){
 
 int CellEmulator::setCurrent(double current){
     //write potmeter0 value
-    // int value = MAX_POT_VALUE*current/MAX_CURRENT;
-    int value = N_STEPS*current/5-1;
+    #ifdef DEBUG_MODE
+        int value = N_STEPS*current/5-1;
+    #else
+        int value = MAX_POT_VALUE*current/MAX_CURRENT;
+    #endif
     return writeWiperValue(0, value);
 }
 
