@@ -1,1 +1,24 @@
-The first iteration board takes as an input a voltage (12 V)
+The first iteration board takes as an input a voltage (12 V), which
+is then scaled down to 5 V to power all the on-board electronics. 
+There is a USB connector and a USB interface IC, which would ensure 
+being able to program the microcontroller - an ATmega328PB. For The
+first iteration no software is needed, but the option was added on the 
+board (with a digital potentiometer, which is explained later).
+
+In order to make the first iteration cycle quicker and focus on 
+the modular design iteration, the team included a single cell 
+only in the first PCB. The cell consists of:
+\begin{enumerate}
+    \item A power supply section, which provides 9 V and 5 V 
+    (both isolated)
+    \item A digital isolator - for communication for the second 
+    iteration software
+    \item A linear regulator - to provide the output voltage
+    \item An op-amp and transistor circuit - for the current 
+    sinking and sourcing
+    \item Potentiometers (physical but also digital ones are on 
+    the board for the second iteration) - to control the voltage
+    and current
+    \item Address jumpers - to distinguish each cell, when more 
+    cells are added in the second iteration.
+\end{enumerate}
