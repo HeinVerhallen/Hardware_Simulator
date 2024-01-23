@@ -1,3 +1,11 @@
+\subsubsection{Sourcing Current}
+For this second iteration the low power of the shelf linear regulator has been replaced with a custom discrete 12A adjustable linear regulator based on the LT3080-1 from Linear Technologies.
+The first thoughts where to make a fully discrete solution but since the low permitted forward voltage drop of the regulator combined with the big output current and relatively big range made it really challenging to get it stable under all operating conditions. For this several hours of LTspice simulations have been performed to in the end move to a design using a of the shelf IC as driver for a big power transistor shown in \hl{insert ref to LTspice SCH image here}.
+
+The working of the circuit is as follows, xx
+
+Two of these identical circuits are placed in parallel with thier set pins tied together so they are at the same potential. To accomodate proper current sharing two 20 m$\tcohm$ series resistors have been added to give some feedback.
+\hl{insert ref to LTspice sim results image here}.
+
 \subsubsection{Sinking Current}
 
-\subsubsection{Sourcing Current}
