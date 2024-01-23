@@ -13,7 +13,8 @@
   Serial.print("current should be: ");
   Serial.println(val);
   // Serial.println(pot1.setVoltage((double)voltage),BIN);
-  Serial.println(pot1.setCurrent(val));
+  Serial.println(pot1.setCurrent(val)); //select wiper 1
+  Serial.println(pot1.setVoltage(val));//select wiper 0
 }
 
 int main(void){

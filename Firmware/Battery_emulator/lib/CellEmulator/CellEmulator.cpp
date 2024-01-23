@@ -29,7 +29,7 @@ int CellEmulator::setVoltage(double voltage){
         int value = N_STEPS-(V_REF*N_STEPS/voltage);
     #endif
     //write potmeter1 value
-    writeWiperValue(1, value);
+    writeWiperValue2(1, value);
     return value;
 }
 
@@ -46,7 +46,7 @@ int CellEmulator::setCurrent(double current){
         int value = MAX_POT_VALUE*current/MAX_CURRENT;
     #endif
     //write potmeter0 value
-    return writeWiperValue(0, value);
+    return writeWiperValue2(0, value);
 }
 
 int CellEmulator::readWiperValue(int wiperSelect){
@@ -74,6 +74,19 @@ int CellEmulator::writeWiperValue(int wiperSelect, uint8_t value){
     
     //I2C write operation
     Wire.beginTransmission(potAddress);
+    Wire.write(data, size);
+    return Wire.endTransmission();
+}
+
+ //attempt to control the separate dig pot
+int CellEmulator::writeWiperValue2(int wiperSelect, uint8_t value){
+    selectI2Cbus(cellNumber);
+    int size = 2;    
+    //create data array with write command and value
+    uint8_t data[size] = {(uint8_t)(wiperSelect<<8),value};
+    
+    //I2C write operation
+    Wire.beginTransmission(0x2C);
     Wire.write(data, size);
     return Wire.endTransmission();
 }
