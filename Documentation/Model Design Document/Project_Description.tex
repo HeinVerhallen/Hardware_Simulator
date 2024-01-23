@@ -7,7 +7,7 @@ The first iteration of the design include a Li-ion battery cell emulator, capabl
 the voltage of the emulated cell is adjusted by a mechanical variable resistor. This iteration has no software and it is needed only for 
 testing the current sourcing and sinking. This design is completed on a single PCB.
 
-The second design iteration is made modular - consisting of a model board PCB and cell PCBS, and software is implemented to control the 
+The second design iteration is made modular - consisting of a model board PCB and cell PCBs, and software is implemented to control the 
 voltages of each emulated cell. The model board PCB has the microprocessor and is able to connect to and control up to 14 cell PCBs. Each
 cell PCB includes all the circuitry needed to source and sink current up to 12 A, control the voltage and emulate the temperature via software.
 Each emulated cell has a voltage and current range that is 20\% larger than the safe operating area of a Li-ion cell.
