@@ -1,20 +1,21 @@
 #include <Arduino.h>
 #include "CellEmulator.h"
 
-// debug mode selects a different algorithm to test the potentiometers directly (comment out to disable)
-// #define DEBUG_MODE 1
-
 // initialize the cell emulators with their addresses and numbers
   CellEmulator pot1(0b00101000, 1);
   // CellEmulator pot2(0b00101001, 2);
   // CellEmulator pot3(0b00101010, 8);
 
-  void testFunction(uint8_t val){
-  Serial.print("current should be: ");
+  char errorMessage[7][16] = {{"Succes"},{ "Nack on data"}, {"Nack on address"}, {"Data too long"}, {"Other error"}, {"Time out"}, {"Data error"}};
+
+  void testFunction(double val){
+  Serial.print("wiper setting should be: ");
   Serial.println(val);
   // Serial.println(pot1.setVoltage((double)voltage),BIN);
-  Serial.println(pot1.setCurrent(val)); //select wiper 1
-  Serial.println(pot1.setVoltage(val));//select wiper 0
+  // Serial.println(errorMessage[pot1.setVoltage(val)]); //select wiper 0
+  // Serial.println(pot1.getVoltage());
+  Serial.println(errorMessage[pot1.setCurrent(val)]); //select wiper 0
+  // Serial.println(pot1.getCurrent());
 }
 
 int main(void){
@@ -33,8 +34,12 @@ int main(void){
       else //if the buffer is not full
         buffer[idx] = Serial.read(); //read the data from the serial port
 
-      if(buffer[idx] == 0x72) //if the data is a 'r'
-        testFunction(buffer[idx-1]-48); //call the test function
+      if(buffer[idx] == 0x72){ //if the data is a 'r'
+        double testValue = (buffer[idx-3]-48)+(double)(buffer[idx-2]-48)/10+(double)(buffer[idx-1]-48)/100; //convert the data to an int
+        Serial.print("testValue: ");
+        Serial.println(testValue);
+        testFunction(testValue); //call the test function
+      }
       idx++;
     }
   } 

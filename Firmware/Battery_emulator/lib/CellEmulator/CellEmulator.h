@@ -28,6 +28,9 @@ x       = value of the potentiometer wiper
 #define MAX_POT_VALUE 256
 #define CALCULATE_VOLTAGE(x) V_REF*N_STEPS/(N_STEPS-x)
 
+#define V_range 3
+#define V_offset 2.4
+
 
 class CellEmulator
 {
@@ -78,11 +81,19 @@ private:
     //input: wiperSelect (1 = potmeter1, 0 = potmeter0)
     //output: wiperValue (value of the wiper of the potmeter as int)
     int readWiperValue(int wiperSelect);
+      //Goal: read the value of the wiper of the potmeter
+    //input: wiperSelect (1 = potmeter1, 0 = potmeter0)
+    //output: wiperValue (value of the wiper of the potmeter as int)
+    int readWiperValue2(int wiperSelect);
 
     //Goal: write the value of the wiper of the potmeter
     //input: wiperSelect (1 = potmeter1, 0 = potmeter0), value (value of the wiper of the potmeter as int)
     //Returns: I2C transmission status (0 = success, 1 = data too long to fit in transmit buffer, 2 = received NACK on transmit of address, 3 = received NACK on transmit of data, 4 = other error, 5 = time out)
     int writeWiperValue(int wiperSelect,uint8_t value);
+    //Goal: write the value of the wiper of the potmeter
+    //input: wiperSelect (1 = potmeter1, 0 = potmeter0), value (value of the wiper of the potmeter as int)
+    //Returns: I2C transmission status (0 = success, 1 = data too long to fit in transmit buffer, 2 = received NACK on transmit of address, 3 = received NACK on transmit of data, 4 = other error, 5 = time out)
+    int writeWiperValue2(int wiperSelect,uint8_t value);
 };
 
 //Goal: select the I2C bus to communicate with the correct cell emulator
