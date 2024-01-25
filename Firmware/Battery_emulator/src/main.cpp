@@ -2,9 +2,9 @@
 #include "CellEmulator.h"
 
 // initialize the cell emulators with their addresses and numbers
-  CellEmulator pot1(0b00101000, 1);
-  // CellEmulator pot2(0b00101001, 2);
-  // CellEmulator pot3(0b00101010, 8);
+  CellEmulator pot1(0b00101000, 0);
+  // CellEmulator pot2(0b00101001, 0);
+  // CellEmulator pot3(0b00101010, 1);
 
   char errorMessage[7][16] = {{"Succes"},{ "Nack on data"}, {"Nack on address"}, {"Data too long"}, {"Other error"}, {"Time out"}, {"Data error"}};
 

@@ -50,4 +50,4 @@ fp-info-cache
 *.raw
 *.fft
 stab.txt
-Documentation/**/*.pdf
+Documentation/**/main.pdf

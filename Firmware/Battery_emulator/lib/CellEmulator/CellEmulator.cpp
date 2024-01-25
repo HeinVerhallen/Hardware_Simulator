@@ -6,9 +6,9 @@
 // debug mode selects a different algorithm to test the potentiometers directly (comment out to disable)
 #define DEBUG_MODE 1
 
-CellEmulator::CellEmulator(int address, int number){
+CellEmulator::CellEmulator(uint8_t address, uint8_t number){
     potAddress = address;
-    cellNumber = number;
+    I2Cbus = number;
     Wire.begin();
     Serial.begin(9600);
 }
@@ -19,10 +19,8 @@ double CellEmulator::getVoltage(){
     #ifdef DEBUG_MODE //if debug mode is enabled
         //read potmeter1 value and convert to voltage
         return (double)readWiperValue2(1);
-    #else //if debug mode is disabled
-        //read potmeter1 value
-        return readWiperValue(1);
     #endif
+    return voltage;
 }
 
 int CellEmulator::setVoltage(double voltage){
@@ -43,15 +41,13 @@ double CellEmulator::getCurrent(){
     #ifdef DEBUG_MODE
         //read potmeter0 value and convert to current
         return (double)readWiperValue2(0);
-    #else
-        //read potmeter0 value and convert to current
-        return (double)(MAX_CURRENT*readWiperValue(0))/MAX_POT_VALUE;
     #endif
+    return current;
 }
 
 int CellEmulator::setCurrent(double value){
     #ifdef DEBUG_MODE
-        uint8_t calculation = (int)((value-V_offset)/V_range*(N_STEPS-1));
+        uint8_t calculation = (uint8_t)((value-V_offset)/V_range*(N_STEPS-1));
         Serial.println(calculation);
         return writeWiperValue2(0, calculation);
     #else
@@ -62,16 +58,16 @@ int CellEmulator::setCurrent(double value){
     #endif
 }
 
-int CellEmulator::readWiperValue(int wiperSelect){
+int CellEmulator::readWiperValue(uint8_t wiperSelect){
     uint8_t data[2];
 
-    selectI2Cbus(cellNumber);
+    selectI2Cbus();
     
     //I2C read operation
     Wire.beginTransmission(potAddress);
     Wire.write(wiperSelect<<4|0b1100); //read command
     Wire.endTransmission();
-    Wire.requestFrom(potAddress, 2);
+    Wire.requestFrom(potAddress, (uint8_t)2);
     while(Wire.available()){
         Wire.readBytes(data, 2);
     }
@@ -79,9 +75,9 @@ int CellEmulator::readWiperValue(int wiperSelect){
     return ((data[0]&0x01)<<8)|data[1];
 }
 
-int CellEmulator::writeWiperValue(int wiperSelect, uint8_t value){
-    selectI2Cbus(cellNumber);
-    int size = 2;    
+int CellEmulator::writeWiperValue(uint8_t wiperSelect, uint8_t value){
+    selectI2Cbus();
+    size_t size = 2;    
     //create data array with write command and value
     uint8_t data[size] = {(uint8_t)(wiperSelect<<4),value};
     
@@ -92,12 +88,11 @@ int CellEmulator::writeWiperValue(int wiperSelect, uint8_t value){
 }
 
  //attempt to control the separate dig pot
-int CellEmulator::writeWiperValue2(int wiperSelect, uint8_t value){
-    selectI2Cbus(cellNumber);
-    int size = 2;    
+int CellEmulator::writeWiperValue2(uint8_t wiperSelect, uint8_t value){
+    selectI2Cbus();
+    size_t size = 2;    
     //create data array with write command and value
     uint8_t data[size] = {(uint8_t)(wiperSelect<<7),value};
-    uint8_t readData;
     
     //I2C write operation
     Wire.beginTransmission(0x2C);
@@ -106,16 +101,16 @@ int CellEmulator::writeWiperValue2(int wiperSelect, uint8_t value){
     return error;
 }
 
-int CellEmulator::readWiperValue2(int wiperSelect){
+int CellEmulator::readWiperValue2(uint8_t wiperSelect){
     int data;
 
-    selectI2Cbus(cellNumber);
+    selectI2Cbus();
     
     //I2C read operation
     Wire.beginTransmission(potAddress);
     Wire.write(wiperSelect<<7); //read command
     Wire.endTransmission();
-    Wire.requestFrom(potAddress, 1);
+    Wire.requestFrom(potAddress, (uint8_t)1);
     while(Wire.available()){
         data = Wire.read();
     }
@@ -123,13 +118,20 @@ int CellEmulator::readWiperValue2(int wiperSelect){
     return data;
 }
 
-void selectI2Cbus(int cellNumber){
-    //select correct I2C bus based on cell number
-    if(cellNumber <= I2C_BUS_SLAVE_NUM){
+void CellEmulator::selectI2Cbus(){
+    //select correct I2C bus
+    switch (I2Cbus)
+    {
+    case I2C_BUS_1:
         PORTD |= (1<<I2C_BUS_SELECT_1);
         PORTD &= ~(1<<I2C_BUS_SELECT_2);
-    } else{
+        break;
+    case I2C_BUS_2:
         PORTD |= (1<<I2C_BUS_SELECT_2);
         PORTD &= ~(1<<I2C_BUS_SELECT_1);
+        break;
+    
+    default:
+        break;
     }
-}
+} 
