@@ -7,7 +7,7 @@ under all operating conditions. For this several hours of LTspice simulations ha
 \begin{figure}[h!]
     \centering
     \includegraphics[scale=0.3]{LT3080-1_LinRegSchematic.pdf}
-    \caption{12 A linear regulator design based on the LT3080-1}
+    \caption{12 A linear regulator design based on the LT3080-1.}
     \label{fig:LT3080-1_LinRegSchematic}
 \end{figure}
 
@@ -20,42 +20,14 @@ A 1 nF capacitor is placed at each set pin to GND to improve the transient respo
 Two of these identical circuits are placed in parallel with thier set pins tied together so they are at the same potential. To accomodate proper current sharing two 20 m$\tcohm$ series resistors have been added to give some feedback.
 The transient responce of the linear regulator is shown in figure \ref{fig:LT3080-1_LinRegSchematic} and shows that with an input coltage of 7.5 V an output voltage of 0 V up to around 6.9 V can be achieved. The phase margin over setpoint (current) is shown in figure \ref{fig:LT3080-1_Phase-margin_VS_setpoint}. The power dissipation in the main components is shown in figure \ref{fig:LT3080-1_PowerDissipation}.
 
-\begin{figure}[h!]
-    \centering
-    \includegraphics[scale=0.3]{LT3080-1_Transient-response.pdf}
-    \caption{12 A linear regulator transient response}
-    \label{fig:LT3080-1_Transient-response}
-\end{figure}
-
-\begin{figure}[h!]
-    \centering
-    \includegraphics[scale=0.3]{LT3080-1_Phase-margin_VS_setpoint.pdf}
-    \caption{12 A linear regulator phase margin vs setpoint (current)}
-    \label{fig:LT3080-1_Phase-margin_VS_setpoint}
-\end{figure}
-
-\begin{figure}[h!]
-    \centering
-    \includegraphics[scale=0.3]{LT3080-1_PowerDissipation.pdf}
-    \caption{12 A linear regulator power dissipation}
-    \label{fig:LT3080-1_PowerDissipation}
-\end{figure}
-
 \subsubsection{Sinking Current}
-The current sink is based on an OpAmp driving a N-MOSFET in its linear region controlling the current flowing trough a sense resistor. The OpAmp changes its output so that the voltage across this sense resistor is equal to its setpoint derived from the digital potentiometer. The circuit is shown in \ref{fig:CurrentSinkSchematic}. the resistor directly at the output of the OpAmp is there to limit the phase shift caused by the gate source capacitance of the MOSFET in combination with its parralel RC snubber. Together these components make the current sink stable in its intended operating region.\ref{fig:CurrentSinkSchematic}
+The current sink is based on an OpAmp driving a N-MOSFET in its linear region controlling the current flowing trough a sense resistor. The OpAmp changes its output so that the voltage across this sense resistor is equal to its setpoint derived from the digital potentiometer. The circuit is shown in \ref{fig:CurrentSinkSchematic}. the resistor directly at the output of the OpAmp is there to limit the phase shift caused by the gate source capacitance of the MOSFET in combination with its parralel RC snubber. Together these components make the current sink stable in its intended operating region \ref{fig:CurrentSinkSchematic}
 
 \begin{figure}[h!]
     \centering
     \includegraphics[scale=0.3]{CurrentSinkSchematic.pdf}
-    \caption{12 A current sink schematic}
+    \caption{12 A current sink schematic.}
     \label{fig:CurrentSinkSchematic}
-\end{figure}
-
-\begin{figure}[h!]
-    \centering
-    \includegraphics[scale=0.3]{CurrentSinkTransient.pdf}
-    \caption{12 A current sink transient responce}
-    \label{fig:CurrentSinkTransient}
 \end{figure}
 
 \subsubsection{PCB design}
