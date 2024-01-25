@@ -1,8 +1,11 @@
 \input{Hardware_testing.tex}
-During the testing phase of the second iteration of the cell board, the digital 
-isolator was compromised due to 6.5 V being present on the 5 V rail. A mistake in 
-the PCB was that the collector and the base pins of the linear regulator transistors
-were swapped, providing the overvoltage to the isoltaor. A simple fix was available 
-by desoldering the digital isolator from the first iteration PCB and replacing it 
-with the broken one. 
+During the testing phase of the second iteration of the cell board, the digital isolator was compromised due to 6.5 V being present on the 5 V rail. This was caused by a mistake in the PCB that swapped the collector and the base pins of the linear regulator series pass transistors were swapped, providing a current path trough the collector base diode of the PNP transistors. Herby the output voltage minus one diode drop was present on the set pins of the LT3080-1. Due to the build in ESD protection diodes of the digital potentiometers (MCP4651T-103E/ST) this higher voltage than its supply voltage of 5 V facilitated a current path trough the positive ESD protection diode to the 5 V rail, pulling it to 6.5 V. By this the digital potentiometer heated up a bit but furthermore doesn't seem to be compromsed since it can handle a supply voltage of up to 7 V. The digital I2C isolator (ISO1640BDR) was compromised by this increase in supply voltage since it works only up to 5.5 V and can handle up to 6 V. 
+
+A simple fix was made by cutting the legs of the base and collector of the series pass transistors and swapping those connections wish some wires. After this the digital isolator from the first iteration PCBA was used to replace the broken one on the second iteration, wich solved the problem.
+
+Furthermore due to the last minute implementation of the new power linear regulator based on the LT3080-1 a missmatch between the simulation and the schematic and thus design occured. Therefore the for the linear regulator needed 500 k$\tcohm$ potentiometer was not present on the PCBA of the second iteration. To be able to proceed with the testing and get as much knowledge from this iteration as possible the wiper trace of the digital potentiometer goint to the set pints of the LT3080-1 ICs was cut with a scalpel and first connected to a 500 k$\tcohm$ trimmer to test the functionallity of the circuit.
+
+after verifing that the circuit works a new I2C digital potentiometer was ordered with a higher resistance, and soldered on the cell board with some wires.
+
+After these updates the cell board is working as intended for as far as has been verified.
 \input{Software_testing.tex}
