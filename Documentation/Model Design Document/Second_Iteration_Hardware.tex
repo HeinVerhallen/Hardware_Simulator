@@ -1,21 +1,36 @@
 \subsubsection{Sourcing Current}
-For this second iteration the low power of the shelf linear regulator has been 
-replaced with a custom discrete 12 A adjustable linear regulator based on the 
-LT3080-1 from Linear Technologies.
+For this second iteration the low power of the shelf linear regulator has been replaced with a custom discrete 12 A adjustable linear regulator based on the LT3080-1 from Linear Technologies.
 
-The first thoughts were to make a fully discrete solution but since the low 
-permitted forward voltage drop of the regulator combined with the big output 
-current and relatively big range made it really challenging to get it stable 
-under all operating conditions. For this several hours of LTspice simulations 
-have been performed to in the end move to a design using an off-the-shelf IC as 
-driver for a high power transistor shown in \hl{insert ref to LTspice SCH image here}.
+The first thoughts were to make a fully discrete solution but since the low permitted forward voltage drop of the regulator combined with the big output current and relatively big range made it really challenging to get it stable 
+under all operating conditions. For this several hours of LTspice simulations have been performed to in the end move to a design using an off-the-shelf IC as driver for a high power transistor shown in figure \ref{fig:LT3080-1_LinRegSchematic}.
 
-The working of the circuit is as follows, xx
+\begin{figure}[h!]
+    \centering
+    \includegraphics[scale=0.3]{LT3080-1_LinRegSchematic.pdf}
+    \caption{12 A linear regulator design based on the LT3080-1.}
+    \label{fig:LT3080-1_LinRegSchematic}
+\end{figure}
 
-Two of these identical circuits are placed in parallel with thier set pins tied 
-together so they are at the same potential. To accomodate proper current sharing 
-two 20 m$\tcohm$ series resistors have been added to give some feedback.
-\hl{insert ref to LTspice sim results image here}.
+The working of the circuit is as follows, the LT3080-1 is used as driver for the series pass PNP transistor wich is used to amplifiy the current.
+
+The output voltage can be set by changing the resistance between the set pin of the LT3080-1 and GND since the LT3080-1 incorporates a current source of 10 $\mu$A of wich the high side is tied to the non-inverting input of an OpAmp. The output of this OpAmop is connected to its output pin via a NPN transistor and the emitter of this transistor is fed back to the inverting input of the OpAmp for feedback. Thus the voltage on the output is forced to be the same as the voltage on its set pin, so according to Ohms law by changing the resistance between the set pin and GND the voltage across the resistor increases and so will the output voltage.
+
+A 1 nF capacitor is placed at each set pin to GND to improve the transient responce of the circuit by acting as a engergy reservoir. Increasing its value furthur decreases the transient responce since the used potentiometer in combination with this capacitor also forms a RC LPF. The series pass PNP transistor is biased with a 47 $\tcohm$ resistor to improve its GBW. The 1 $\mu$F input and 2.2 $\mu$F ouptut capacitors are there for stability.
+
+Two of these identical circuits are placed in parallel with thier set pins tied together so they are at the same potential. To accomodate proper current sharing two 20 m$\tcohm$ series resistors have been added to give some feedback.
+The transient responce of the linear regulator is shown in figure \ref{fig:LT3080-1_LinRegSchematic} and shows that with an input coltage of 7.5 V an output voltage of 0 V up to around 6.9 V can be achieved. The phase margin over setpoint (current) is shown in figure \ref{fig:LT3080-1_Phase-margin_VS_setpoint}. The power dissipation in the main components is shown in figure \ref{fig:LT3080-1_PowerDissipation}.
 
 \subsubsection{Sinking Current}
+The current sink is based on an OpAmp driving a N-MOSFET in its linear region controlling the current flowing trough a sense resistor. The OpAmp changes its output so that the voltage across this sense resistor is equal to its setpoint derived from the digital potentiometer. The circuit is shown in \ref{fig:CurrentSinkSchematic}. the resistor directly at the output of the OpAmp is there to limit the phase shift caused by the gate source capacitance of the MOSFET in combination with its parralel RC snubber. Together these components make the current sink stable in its intended operating region \ref{fig:CurrentSinkSchematic}
 
+\begin{figure}[h!]
+    \centering
+    \includegraphics[scale=0.3]{CurrentSinkSchematic.pdf}
+    \caption{12 A current sink schematic.}
+    \label{fig:CurrentSinkSchematic}
+\end{figure}
+
+\subsubsection{PCB design}
+Since there are some substantional currents flowing trough the design of up to 12 A the trace withs have been determined according to IPC2221A at a maximum temperature rise of 10 \textdegree C.
+
+Since all cell boards must be able to be placed in series they should all be floating and be able to withstand at least the maximum expected cell voltage of each cell multiplied by the total amount of cells. Therefore the minimum width of the isolation barrier has also been determinde useing IPC2221A.
