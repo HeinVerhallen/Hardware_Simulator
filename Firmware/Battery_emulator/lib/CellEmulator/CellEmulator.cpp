@@ -4,124 +4,87 @@
 #include <Wire.h>
 
 // debug mode selects a different algorithm to test the potentiometers directly (comment out to disable)
-#define DEBUG_MODE 1
+// #define DEBUG_MODE 1
 
-CellEmulator::CellEmulator(uint8_t address, uint8_t number){
-    potAddress = address;
+CellEmulator::CellEmulator(uint8_t address1, uint8_t address2, uint8_t number){
+    potAddress1 = address1;
+    potAddress2 = address2;
     I2Cbus = number;
     Wire.begin();
-    Serial.begin(9600);
 }
 
 CellEmulator::~CellEmulator(){}
 
 double CellEmulator::getVoltage(){
-    #ifdef DEBUG_MODE //if debug mode is enabled
-        //read potmeter1 value and convert to voltage
-        return (double)readWiperValue2(1);
-    #endif
     return voltage;
 }
 
-int CellEmulator::setVoltage(double voltage){
-    #ifdef DEBUG_MODE //if debug mode is enabled
-        int value = N_STEPS * voltage/5-1;
-            //write potmeter1 value
-        return writeWiperValue2(1, value);
-    #else //if debug mode is disabled
-        //convert voltage to potmeter value
-        int value = N_STEPS-(V_REF*N_STEPS/voltage);
-        //write potmeter1 value
-        return writeWiperValue(1, value);
-    #endif
-    // return value;
+double CellEmulator::getCurrent(){
+    return current;
 }
 
-double CellEmulator::getCurrent(){
-    #ifdef DEBUG_MODE
-        //read potmeter0 value and convert to current
-        return (double)readWiperValue2(0);
+double CellEmulator::getTemperature(){
+    return temperature;
+}
+
+int CellEmulator::setVoltage(double value){
+    #ifdef DEBUG_MODE //if debug mode is enabled
+        return writeWiperValue(0, (uint8_t)value);
+    #else //if debug mode is disabled
+        if ((value > 5.5) | (value < V_offset)){ //input value gaurd clause
+            return 7;
+        }
+        voltage = value;
+        //write voltage value to potentiometer 2, wiper 0
+        double calculation = (value < VOLTAGE_FORMULA_THRESHOLD) ? VOLTAGE_LOW_FORMULA(value) : VOLTAGE_HIGH_FORMULA(value);
+        return writeWiperValue(0, (uint8_t)calculation);
     #endif
-    return current;
 }
 
 int CellEmulator::setCurrent(double value){
     #ifdef DEBUG_MODE
-        uint8_t calculation = (uint8_t)((value-V_offset)/V_range*(N_STEPS-1));
-        Serial.println(calculation);
-        return writeWiperValue2(0, calculation);
+        return writeWiperValue(2, (int)value);
     #else
-        //convert current to potmeter value
-        int value = MAX_POT_VALUE*current/MAX_CURRENT;
-        //write potmeter0 value
-        return writeWiperValue2(0, value);
+        if ((value > MAX_CURRENT) | (value < 0)){ //input value gaurd clause
+            return 7;
+        }
+        current = value;
+        //write current value to potentiometer 1, wiper 0
+        return writeWiperValue(2, CURRENT_FORMULA(value));
     #endif
 }
 
-int CellEmulator::readWiperValue(uint8_t wiperSelect){
-    uint8_t data[2];
-
-    selectI2Cbus();
-    
-    //I2C read operation
-    Wire.beginTransmission(potAddress);
-    Wire.write(wiperSelect<<4|0b1100); //read command
-    Wire.endTransmission();
-    Wire.requestFrom(potAddress, (uint8_t)2);
-    while(Wire.available()){
-        Wire.readBytes(data, 2);
-    }
-    //return potmeter value as int16
-    return ((data[0]&0x01)<<8)|data[1];
+int CellEmulator::setTemperature(double value){
+    #ifdef DEBUG_MODE
+        return writeWiperValue(1, (int)value);
+    #else
+        if ((value >= MAX_TEMPERATURE) | (value <= MIN_TEMPERATURE)){ //input value gaurd clause
+            return 7;
+        }
+        temperature = value;
+        //write temperature value to potentiometer 1, wiper 1
+        double calculation = TEMPERATURE_FORMULA(value);
+        return writeWiperValue(1, (int)calculation);
+    #endif
 }
 
 int CellEmulator::writeWiperValue(uint8_t wiperSelect, uint8_t value){
     selectI2Cbus();
-    size_t size = 2;    
-    //create data array with write command and value
-    uint8_t data[size] = {(uint8_t)(wiperSelect<<4),value};
+    size_t size = 2;
+    uint8_t data[size];
+    data[0] = (uint8_t)(wiperSelect<<7)&0xFF;//byte 0: wiperselect 0 = 0, wiperselect 1 = 1, wiperslect 2 = 0;
+    data[1] = value;//byte 1: value
+    int address = (wiperSelect == 0) ? potAddress2 : potAddress1; //select correct address
     
     //I2C write operation
-    Wire.beginTransmission(potAddress);
+    Wire.beginTransmission(address);
     Wire.write(data, size);
     return Wire.endTransmission();
 }
 
- //attempt to control the separate dig pot
-int CellEmulator::writeWiperValue2(uint8_t wiperSelect, uint8_t value){
-    selectI2Cbus();
-    size_t size = 2;    
-    //create data array with write command and value
-    uint8_t data[size] = {(uint8_t)(wiperSelect<<7),value};
-    
-    //I2C write operation
-    Wire.beginTransmission(0x2C);
-    Wire.write(data, size);
-    int error = Wire.endTransmission();
-    return error;
-}
-
-int CellEmulator::readWiperValue2(uint8_t wiperSelect){
-    int data;
-
-    selectI2Cbus();
-    
-    //I2C read operation
-    Wire.beginTransmission(potAddress);
-    Wire.write(wiperSelect<<7); //read command
-    Wire.endTransmission();
-    Wire.requestFrom(potAddress, (uint8_t)1);
-    while(Wire.available()){
-        data = Wire.read();
-    }
-    //return potmeter value as int16
-    return data;
-}
-
 void CellEmulator::selectI2Cbus(){
     //select correct I2C bus
-    switch (I2Cbus)
-    {
+    switch (I2Cbus) {
     case I2C_BUS_1:
         PORTD |= (1<<I2C_BUS_SELECT_1);
         PORTD &= ~(1<<I2C_BUS_SELECT_2);

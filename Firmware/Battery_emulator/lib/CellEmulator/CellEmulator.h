@@ -26,8 +26,19 @@ x       = value of the potentiometer wiper
 #define N_STEPS 256
 #define MAX_CURRENT 13
 
-#define V_range 3
-#define V_offset 2.4
+#define V_range 2.991
+#define V_offset 2.514
+
+#define MAX_TEMPERATURE 100
+#define MIN_TEMPERATURE 0
+
+#define VOLTAGE_LOW_FORMULA(value) (value-2.5143)/0.0166
+#define VOLTAGE_FORMULA_THRESHOLD 5.44
+#define VOLTAGE_HIGH_FORMULA(value) 27031*value*value-294887*value+804432
+
+#define CURRENT_FORMULA(value) N_STEPS-1-(value/MAX_CURRENT*N_STEPS-1)
+
+#define TEMPERATURE_FORMULA(value) (value-MIN_TEMPERATURE)/(MAX_TEMPERATURE-MIN_TEMPERATURE)*N_STEPS-1
 
 
 class CellEmulator
@@ -37,7 +48,7 @@ public:
     //Goal: constructor of the CellEmulator class
     //input: address (address of the cell emulator), number (number of the cell emulator)
     //output: none
-    CellEmulator(uint8_t address, uint8_t number);
+    CellEmulator(uint8_t address1, uint8_t address2, uint8_t number);
 
     //CellEmulator
     //Goal: destructor of the CellEmulator class
@@ -63,34 +74,36 @@ public:
     //output: current (current of the cell emulator as double)
     double getCurrent();
 
+    //setCurrent
     //Goal: set the current of the cell emulator
     //input: current (current of the cell emulator as double)
     //output: I2C transmission status (0 = success, 1 = data too long to fit in transmit buffer, 2 = received NACK on transmit of address, 3 = received NACK on transmit of data, 4 = other error, 5 = time out)
     int setCurrent(double current);
 
-private:
-    double voltage = 2.5;
-    double current = 0.1;
-    uint8_t potAddress = 0b01010000;
-    uint8_t I2Cbus = 0;
+    //getTemperature
+    //Goal: get the temperature of the cell emulator
+    //input: none
+    //output: temperature (temperature of the cell emulator as double)
+    double getTemperature();
 
-    //Goal: read the value of the wiper of the potmeter
-    //input: wiperSelect (1 = potmeter1, 0 = potmeter0)
-    //output: wiperValue (value of the wiper of the potmeter as int)
-    int readWiperValue(uint8_t wiperSelect);
-      //Goal: read the value of the wiper of the potmeter
-    //input: wiperSelect (1 = potmeter1, 0 = potmeter0)
-    //output: wiperValue (value of the wiper of the potmeter as int)
-    int readWiperValue2(uint8_t wiperSelect);
+    //setTemperature
+    //Goal: set the temperature of the cell emulator
+    //input: temperature (temperature of the cell emulator as double)
+    //output: I2C transmission status (0 = success, 1 = data too long to fit in transmit buffer, 2 = received NACK on transmit of address, 3 = received NACK on transmit of data, 4 = other error, 5 = time out)
+    int setTemperature(double temperature);
+
+private:
+    double voltage = 0.0;
+    double current = 0.0;
+    double temperature = 0;
+    uint8_t potAddress1 = 0b01010000;
+    uint8_t potAddress2 = 0b01011000;
+    uint8_t I2Cbus = 0;
 
     //Goal: write the value of the wiper of the potmeter
     //input: wiperSelect (1 = potmeter1, 0 = potmeter0), value (value of the wiper of the potmeter as int)
     //Returns: I2C transmission status (0 = success, 1 = data too long to fit in transmit buffer, 2 = received NACK on transmit of address, 3 = received NACK on transmit of data, 4 = other error, 5 = time out)
     int writeWiperValue(uint8_t wiperSelect,uint8_t value);
-    //Goal: write the value of the wiper of the potmeter
-    //input: wiperSelect (1 = potmeter1, 0 = potmeter0), value (value of the wiper of the potmeter as int)
-    //Returns: I2C transmission status (0 = success, 1 = data too long to fit in transmit buffer, 2 = received NACK on transmit of address, 3 = received NACK on transmit of data, 4 = other error, 5 = time out)
-    int writeWiperValue2(uint8_t wiperSelect,uint8_t value);
     //Goal: select the I2C bus to communicate with the correct cell emulator
     //input: none
     //output: none

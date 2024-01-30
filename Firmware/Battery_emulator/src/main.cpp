@@ -1,22 +1,11 @@
 #include <Arduino.h>
 #include "CellEmulator.h"
 
-// initialize the cell emulators with their addresses and numbers
-  CellEmulator pot1(0b00101000, 0);
-  // CellEmulator pot2(0b00101001, 0);
-  // CellEmulator pot3(0b00101010, 1);
+#define DEBUG_MODE 1
 
-  char errorMessage[7][16] = {{"Succes"},{ "Nack on data"}, {"Nack on address"}, {"Data too long"}, {"Other error"}, {"Time out"}, {"Data error"}};
+  char errorMessage[8][19] = {{"Succes"},{ "Nack on data"}, {"Nack on address"}, {"Data too long"}, {"Other error"}, {"Time out"}, {"Data error"}, {"value out of range"}}; //error messages
 
-  void testFunction(double val){
-  Serial.print("wiper setting should be: ");
-  Serial.println(val);
-  // Serial.println(pot1.setVoltage((double)voltage),BIN);
-  // Serial.println(errorMessage[pot1.setVoltage(val)]); //select wiper 0
-  // Serial.println(pot1.getVoltage());
-  Serial.println(errorMessage[pot1.setCurrent(val)]); //select wiper 0
-  // Serial.println(pot1.getCurrent());
-}
+  CellEmulator pot1(0x28, 0x2C, 0);//current+temperature pot address, voltage pot address, cell emulator number
 
 int main(void){
   init();
@@ -34,11 +23,34 @@ int main(void){
       else //if the buffer is not full
         buffer[idx] = Serial.read(); //read the data from the serial port
 
-      if(buffer[idx] == 0x72){ //if the data is a 'r'
-        double testValue = (buffer[idx-3]-48)+(double)(buffer[idx-2]-48)/10+(double)(buffer[idx-1]-48)/100; //convert the data to an int
-        Serial.print("testValue: ");
+      if((buffer[idx] == 'i') | (buffer[idx] == 'I')){ //run the current function
+        double testValue = (buffer[idx-3]-48)*10+(double)(buffer[idx-2]-48)+(double)(buffer[idx-1]-48)/10; //convert the data to an int
         Serial.println(testValue);
-        testFunction(testValue); //call the test function
+        #ifdef DEBUG_MODE
+          Serial.println(pot1.setCurrent(testValue));
+        #else
+          Serial.println(errorMessage[pot1.setCurrent(testValue)]);
+        #endif
+      }
+
+      if((buffer[idx] == 'v') | (buffer[idx] == 'V')){
+        double testValue = (buffer[idx-3]-48)+(double)(buffer[idx-2]-48)/10+(double)(buffer[idx-1]-48)/100; //convert the data to an int
+        Serial.println(testValue);
+        #ifdef DEBUG_MODE
+          Serial.println(pot1.setVoltage(testValue));
+        #else
+          Serial.println(errorMessage[pot1.setVoltage(testValue)]);
+        #endif
+      }
+
+      if((buffer[idx] == 't') | (buffer[idx] == 'T')){
+        double testValue = (buffer[idx-3]-48)*10+(double)(buffer[idx-2]-48)+(double)(buffer[idx-1]-48)/10; //convert the data to an int
+        Serial.println(testValue);
+        #ifdef DEBUG_MODE
+          Serial.println(pot1.setTemperature(testValue));
+        #else
+          Serial.println(errorMessage[pot1.setTemperature(testValue)]);
+        #endif
       }
       idx++;
     }
