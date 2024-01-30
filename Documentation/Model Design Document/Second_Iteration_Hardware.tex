@@ -1,8 +1,7 @@
 \subsubsection{Sourcing Current}
 For this second iteration the low power of the shelf linear regulator has been replaced with a custom discrete 12 A adjustable linear regulator based on the LT3080-1 from Linear Technologies.
 
-The first thoughts were to make a fully discrete solution but since the low permitted forward voltage drop of the regulator combined with the big output current and relatively big range made it really challenging to get it stable
-under all operating conditions. For this several hours of LTspice simulations have been performed to in the end move to a design using an off-the-shelf IC as driver for a high-power transistor shown in Fig. \ref{fig:LT3080-1_LinRegSchematic}.
+The first thoughts were to make a fully discrete solution but since the low permitted forward voltage drop of the regulator combined with the big output current of 12 A and relatively big range (of at least 2.48 V\textless Vout\textless 5.04 V) made it really challenging to get it stable under all operating conditions. For this several hours of LTspice simulations have been performed to in the end move to a design using an off-the-shelf IC as driver for a high-power transistor shown in Fig. \ref{fig:LT3080-1_LinRegSchematic}.
 
 \begin{figure}[h!]
     \centering
@@ -31,7 +30,9 @@ The current sink is based on an OpAmp driving a N-MOSFET in its linear region co
 
 The corresponding KiCAD schematic is shown in Fig. \ref{fig:CellBoardKiCADSchematic}.
 
-A model board has been made that interconnects all cell boards and incorporates a ATMEGA328PB MCU to control everything. The full schematic of this board is shown in Fig. \ref{fig:ModelBoardKiCADSchematic}.
+A model board has been made that interconnects all cell boards and incorporates a Atmega328PB MCU to control everything. The full schematic of this board is shown in Fig. \ref{fig:ModelBoardKiCADSchematic}. 
+
+The mandatory reverse polarity protection on the model board is accomplished by adding a diode in series with the incoming supply rail.
 
 \subsubsection{PCB design}
 Since there are some substantial currents flowing through the design of up to 12 A the trace widths have been determined according to IPC2221A at a maximum temperature rise of 10 \textdegree C.
