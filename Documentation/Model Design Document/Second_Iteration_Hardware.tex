@@ -37,3 +37,33 @@ A model board has been made that interconnects all cell boards and incorporates 
 Since there are some substantial currents flowing through the design of up to 12 A the trace widths have been determined according to IPC2221A at a maximum temperature rise of 10 \textdegree C.
 
 Since all cell boards must be able to be placed in series they should all be floating and be able to withstand at least the maximum expected cell voltage of each cell multiplied by the total amount of cells. Therefore, the minimum width of the isolation barrier has also been determined using IPC2221A.
+
+\csvautotabular{TestPlan.csv}
+
+\begin{table*}[!ht]
+    \centering
+    \begin{tabular}{|l|l|l|l|l|l|l|}
+    \hline
+        "ID" & Requirement & Test method & Expected outcome & Measured outcome & Check & Date \\ \hline
+        1.1 & The maximum voltage of the 14 cell battery pack emulator is 80V & Attach Siglent SPD3303X-E power supply to input. Measure output voltage of the combined cells at maximum output voltage with a multimeter & 80V +- 10\% & ~ & ~ & ~ \\ \hline
+        1.11 & The maximum voltage of the 4 cell battery pack emulator is 20V & Attach Siglent SPD3303X-E power supply to input. Measure output voltage of the combined cells at maximum output voltage with a multimeter & 20V +- 10\% & ~ & ~ & ~ \\ \hline
+        1.2 & The battery pack emulator has a peak power of 13.44kW (see 10.1) & Attach Siglent SPD3303X-E power supply to input. Attach load to output and set output voltage of cell to maximum. Measure peak output voltage and current values with oscilloscope over time to calculate power.  & 13.44kW +- 10\% & ~ & ~ & ~ \\ \hline
+        1.21 & The 4 cell battery pack emulator has a peak power of 240W (see 10.1) & Attach Siglent SPD3303X-E power supply to input. Attach load to output and set output voltage of cell to maximum. Measure peak output voltage and current values with oscilloscope over time to calculate power.  & 240W +- 10\% & ~ & ~ & ~ \\ \hline
+        1.3 & The battery pack emulator has a continuous power of 112W (see 10.1) & Attach Siglent SPD3303X-E power supply to input. Attach load to output and set output voltage of cell to maximum. Measure output voltage and current with multimeter to calculate power.  & 112W +- 10\% & ~ & ~ & ~ \\ \hline
+        5.1 & The emulated cell has a voltage range of 2.48 to 5.04 V & Attach Siglent SPD3303X-E power supply to input. Measure output voltage of each cell with multimeter at the minimum and maximum output voltages & 2.48V to 5.04V +-10\% & ~ & ~ & ~ \\ \hline
+        5.2 & The emulated cell has a peak sourcing current of 12A & Attach Siglent SPD3303X-E power supply to input. Attach a load to the output and measure the current through the load & 12A +- 10\% & ~ & ~ & ~ \\ \hline
+        5.3 & The emulated cell has a continuous sourcing current of 100mA & Attach Siglent SPD3303X-E power supply to input. Attach a load to the output and measure the current through the load & 100mA +- 10\% & ~ & ~ & ~ \\ \hline
+        5.4 & The emulated cell has a peak sinking current of 12A & Take two Siglent SPD3303X-E power supplies in parallel and set the current to 6A and measure the current drawn from these supplies & 12A +- 10\% & ~ & ~ & ~ \\ \hline
+        5.5 & The emulated cell has a continuous sinking current of 100mA & Take one Siglent SPD3303X-E power supply and set the current to 200mA and measure the current drawn from the supply & 100mA +- 10\% & ~ & ~ & ~ \\ \hline
+        5.6 & The emulated cell has a peak power of 60W & Attach Siglent SPD3303X-E power supply to input. Attach load to output and set output voltage of cell to maximum. Measure peak output voltage and current values with oscilloscope over time to calculate power.  & 60W +- 10\% & ~ & ~ & ~ \\ \hline
+        5.7 & The emulated cell has a continuous power of 0.5W & Attach Siglent SPD3303X-E power supply to input. Attach load to output and set output voltage of cell to maximum. Measure output voltage and current with multimeter to calculate power.  & 0.5W +- 10\% & ~ & ~ & ~ \\ \hline
+        6.2 & A user interface is made to adjust the voltages & Set-up the user device and attach it to the PCB. Test for specific voltages, voltages on the boundaries, and if the voltages change in real time. Measure the output with a multimeter  & Output voltage responds to changes in the user interface & ~ & ~ & ~ \\ \hline
+        6.3 & The voltages are adjusted using a digital potentiometer & Set-up the user device and attach it to the PCB. Vary the resistance of the potentiometer to achieve specific voltages and measure the output voltage of the PCB using a multimeter.   & Output voltage responds to changes in the digital potentiometer  & ~ & ~ & ~ \\ \hline
+        7.1 & The temperature is emulated by using a digital potentiometer & Set-up the device and decide on reference temperatures. Set the digital potentiometer to the desired emulated temperature and measure.  & The emulated temperature matches the temperature from the potentiometer & ~ & ~ & ~ \\ \hline
+        7.2 & The emulated temperature range is -40 to 80 C & Set-up the device. Set the digital potentiometer to emulate the desired temperature boundaries and measure.  & The emulated temperature range matches the desired range for the device  & ~ & ~ & ~ \\ \hline
+        7.3 & The emulated battery pack has an output which indicates the temperature relative to the output voltage & ~ & ~ & ~ & ~ & ~ \\ \hline
+        10.1 & The temperature of the electronics should be less than 25 C & *Run the device for an hour and then take the temperature of the electronics & Temperature is under 25 C & ~ & ~ & ~ \\ \hline
+        10.2 & The input of the battery pack emulator has reverse polarity protection & Wire the input with inverse polarity  & nothing blows up & ~ & ~ & ~ \\ \hline
+        10.3 & The input of the battery pack emulator and load emulator have over current protection & Increase the input current above the maximum value  & nothing blows up  & ~ & ~ & ~ \\ \hline
+    \end{tabular}
+\end{table*}
