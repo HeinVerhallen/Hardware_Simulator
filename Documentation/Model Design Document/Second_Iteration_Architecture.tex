@@ -5,16 +5,16 @@
     \label{fig:2nd_architecture}
 \end{figure}
 
-The second iteration of the design is made modular, in order to be able to work
+The second iteration of the design is made modular in order to be able to work
  with multiple cells. This is done by implementing a model board
-PCB and a cell board PCB. The model board houses 14 slots for cell boards to be 
-connected to. This means that as many cells (up to 14) can be used (regardless 
-of the slot position). An overview of the architecture is visible in 
+PCB and a cell board PCB. The model board houses 14 slots to connect the cell boards.
+This means that up to 14can be used, regardless 
+of the slot position. An overview of the architecture is visible in 
 Fig. \ref{fig:2nd_architecture}.
 
     \subsubsection{Model board}
     The model board consists of a 5 V power supply, the microcontroller, a USB 
-    conneciton and 14 cell slots. The following is being transmitted at the
+    connection and 14 cell slots. The following is being transmitted at the
     cell slots:
 
     \begin{itemize}
