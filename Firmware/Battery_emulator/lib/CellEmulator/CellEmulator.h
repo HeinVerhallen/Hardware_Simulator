@@ -22,22 +22,21 @@ Vref    = linear regulators internal reference voltage,
 Nsteps  = number of steps the digital potentiometer has and 
 x       = value of the potentiometer wiper
 */
-#define V_REF 1.25
-#define N_STEPS 256
-#define MAX_CURRENT 13
-
-#define V_range 2.991
+// #define V_REF 1.25
+// #define V_range 2.991
 #define V_offset 2.514
-
-#define MAX_TEMPERATURE 100
-#define MIN_TEMPERATURE 0
 
 #define VOLTAGE_LOW_FORMULA(value) (value-2.5143)/0.0166
 #define VOLTAGE_FORMULA_THRESHOLD 5.44
 #define VOLTAGE_HIGH_FORMULA(value) 27031*value*value-294887*value+804432
 
-#define CURRENT_FORMULA(value) N_STEPS-1-(value/MAX_CURRENT*N_STEPS-1)
+#define N_STEPS 256
+#define MAX_CURRENT 13
+#define MIN_CURRENT 0
+#define CURRENT_FORMULA(value) N_STEPS-1-((value-MIN_CURRENT)/(MAX_CURRENT-MIN_CURRENT)*N_STEPS-1)
 
+#define MAX_TEMPERATURE 100
+#define MIN_TEMPERATURE 0
 #define TEMPERATURE_FORMULA(value) (value-MIN_TEMPERATURE)/(MAX_TEMPERATURE-MIN_TEMPERATURE)*N_STEPS-1
 
 

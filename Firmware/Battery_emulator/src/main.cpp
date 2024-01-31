@@ -1,9 +1,9 @@
 #include <Arduino.h>
 #include "CellEmulator.h"
 
-#define DEBUG_MODE 1
+// #define DEBUG_MODE 1
 
-  char errorMessage[8][19] = {{"Succes"},{ "Nack on data"}, {"Nack on address"}, {"Data too long"}, {"Other error"}, {"Time out"}, {"Data error"}, {"value out of range"}}; //error messages
+  char errorMessage[8][19] = {{"Succes"}, {"Data too long"} ,{"Nack on address"}, {"Nack on data"}, {"Other error"}, {"Time out"}, {"Data error"}, {"value out of range"}}; //error messages
 
   CellEmulator pot1(0x28, 0x2C, 0);//current+temperature pot address, voltage pot address, cell emulator number
 
