@@ -5,6 +5,7 @@
       \item Make the bootloading lines available on the board to ensure proper bootloading of the microcontroller.
       \item Look into the digital isolation. In the working prototype, the digital isolation is left out, due to problems with the digital isolator. It seems like the digital isolator is constantly sending an acknowledgment signal, even when the controller is sending data.
       \item Update the digital potentiometer. The new digital potentiometer should have a higher resistance, to ensure that the linear regulators have enough range in output voltage. (the output voltage can be calculated as follows: $V_{out} = 20\mu A \cdot (R_{offset}+R_{potentiometer}$). With a potentiometer of 200k$\Omega$ the output range is 4V, with the offset resistor the range can be shifted to higher voltages.
+      \item The temperature sensor emulator can be moved to the model board, because the temperate will not be emulated at cell level but at the pack level.
       \item Update the footprints of the transistors near the linear regulators. The current footprints have the wrong pinout, the base and collector are swapped.
       \item The OpAmp of the current sink is not working properly. The output of the opamp stays at 0V, no matter the input. In the prototype, the OpAmp is replaced, with a through hole version of the same OpAmp, which did work. 
 \end{itemize}  

@@ -64,7 +64,7 @@ public:
     //setVoltage
     //Goal: set the voltage of the cell emulator
     //input: voltage (voltage of the cell emulator as double)
-    //output: I2C transmission status (0 = success, 1 = data too long to fit in transmit buffer, 2 = received NACK on transmit of address, 3 = received NACK on transmit of data, 4 = other error, 5 = time out)
+    //output: I2C transmission status (0 = success, 1 = data too long to fit in transmit buffer, 2 = received NACK on transmit of address, 3 = received NACK on transmit of data, 4 = other error, 5 = time out, 7 = value out of range)
     int setVoltage(double voltage);
 
     //getCurrent
@@ -76,7 +76,7 @@ public:
     //setCurrent
     //Goal: set the current of the cell emulator
     //input: current (current of the cell emulator as double)
-    //output: I2C transmission status (0 = success, 1 = data too long to fit in transmit buffer, 2 = received NACK on transmit of address, 3 = received NACK on transmit of data, 4 = other error, 5 = time out)
+    //output: I2C transmission status (0 = success, 1 = data too long to fit in transmit buffer, 2 = received NACK on transmit of address, 3 = received NACK on transmit of data, 4 = other error, 5 = time out, 7 = value out of range)
     int setCurrent(double current);
 
     //getTemperature
@@ -88,7 +88,7 @@ public:
     //setTemperature
     //Goal: set the temperature of the cell emulator
     //input: temperature (temperature of the cell emulator as double)
-    //output: I2C transmission status (0 = success, 1 = data too long to fit in transmit buffer, 2 = received NACK on transmit of address, 3 = received NACK on transmit of data, 4 = other error, 5 = time out)
+    //output: I2C transmission status (0 = success, 1 = data too long to fit in transmit buffer, 2 = received NACK on transmit of address, 3 = received NACK on transmit of data, 4 = other error, 5 = time out, 7 = value out of range)
     int setTemperature(double temperature);
 
 private:
